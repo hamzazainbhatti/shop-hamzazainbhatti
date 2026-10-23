@@ -4,9 +4,45 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@keyframes hero-background-pan {
+  from {
+    background-position: center bottom;
+    filter: blur(10px);
+    transform: scale(1.2);
+  }
+
+  to {
+    background-position: center top;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+.hero-background {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-background::before {
+  position: absolute;
+  inset: 0;
+  background-image: url("/assets/hero-bg.jpg");
+  background-position: center top;
+  background-size: cover;
+  content: "";
+  animation: hero-background-pan 1s ease-in-out 500ms both;
+}
+
 @theme inline {
+  --font-sans: "Commissioner", sans-serif;
+  --font-serif: "Lora Variable", serif;
+  --font-display: "Cormorant Garamond", serif;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-header: var(--header);
+  --color-header-foreground: var(--header-foreground);
+  --color-header-foreground-supporting: var(--header-foreground-supporting);
   --color-foreground-supporting: var(--foreground-supporting);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -28,13 +64,27 @@
 }
 
 :root {
-  --background: #FCFCF9;
-  --foreground: #313638;
-  --foreground-supporting: color-mix(in oklab, var(--foreground) 65%, var(--background));
+  --font-style-default: normal;
+  --transparent: #00000000;
 
-  --card: #F7F6F3;
+  --background: #fcfcf9;
+  --foreground: #100f0f;
+  --foreground-supporting: color-mix(
+    in oklab,
+    var(--foreground) 65%,
+    var(--background)
+  );
+
+  --header: #ffffffcc;
+  --header-foreground: var(--foreground);
+
+  --card: #f7f6f3;
   --card-foreground: #090909;
-  --card-foreground-supporting: color-mix(in oklab, var(--card-foreground) 65%, var(--card));
+  --card-foreground-supporting: color-mix(
+    in oklab,
+    var(--card-foreground) 65%,
+    var(--card)
+  );
 
   --popover: #ffffff;
   --popover-foreground: #000000;
@@ -59,14 +109,31 @@
   --radius: 0.625rem;
 }
 
+@layer base {
+  body {
+    font-style: var(--font-style-default);
+  }
+}
+
 .dark {
   --background: #000000;
   --foreground: #ffffff;
-  --foreground-supporting: color-mix(in oklab, var(--foreground) 65%, var(--background));
+  --foreground-supporting: color-mix(
+    in oklab,
+    var(--foreground) 65%,
+    var(--background)
+  );
+
+  --header: #ffffff;
+  --header-foreground: #313638;
 
   --card: #0a0a0a;
   --card-foreground: #ffffff;
-  --card-foreground-supporting: color-mix(in oklab, var(--card-foreground) 65%, var(--card));
+  --card-foreground-supporting: color-mix(
+    in oklab,
+    var(--card-foreground) 65%,
+    var(--card)
+  );
 
   --popover: #0a0a0a;
   --popover-foreground: #ffffff;
@@ -82,7 +149,7 @@
 
   --accent: #262626;
   --accent-foreground: #ffffff;
-  
+
   --destructive: #ef4444;
   --border: #262626;
   --input: #262626;
