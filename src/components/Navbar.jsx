@@ -14,24 +14,24 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed z-10 flex w-dvw items-center justify-between px-15 py-6  font-sans text-sm font-medium transition-colors duration-300 ease-linear ${
+        className={`fixed z-10 flex w-dvw items-center justify-between px-15 py-6 font-sans text-sm font-medium transition-colors duration-300 ease-linear ${
           scrolled
-            ? "bg-header text-[#100f0f] backdrop-blur-md"
+            ? "bg-header text-header-scrolled backdrop-blur-md"
             : "bg-transparent text-header"
         }`}
       >
         <nav>
           <ul className="flex gap-6 h-6">
-            <Button flavour="linkButton" href="/">
+            <Button flavour="underlinedButton" href="/">
               NEW ARRIVAL
             </Button>
-            <Button flavour="linkButton" href="/">
+            <Button flavour="underlinedButton" href="/">
               MEN
             </Button>
-            <Button flavour="linkButton" href="/">
+            <Button flavour="underlinedButton" href="/">
               WOMEN
             </Button>
-            <Button flavour="linkButton" href="/shop">
+            <Button flavour="underlinedButton" href="/shop">
               SHOP
             </Button>
           </ul>

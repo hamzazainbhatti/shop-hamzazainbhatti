@@ -41,8 +41,12 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-header: var(--header);
+  --color-header-scrolled: var(--header-scrolled);
   --color-header-foreground: var(--header-foreground);
   --color-header-foreground-supporting: var(--header-foreground-supporting);
+  --color-header-foreground-supporting-scrolled: var(
+    --header-foreground-supporting-scrolled
+  );
   --color-foreground-supporting: var(--foreground-supporting);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -76,7 +80,14 @@
   );
 
   --header: #ffffffcc;
+  --header-scrolled: #100f0f;
   --header-foreground: var(--foreground);
+  --header-foreground-supporting: #adadade0;
+  --header-foreground-supporting-scrolled: color-mix(
+    in oklab,
+    var(--header-foreground-supporting) 65%,
+    var(--header-scrolled)
+  );
 
   --card: #f7f6f3;
   --card-foreground: #090909;
@@ -125,7 +136,14 @@
   );
 
   --header: #ffffff;
+  --header-scrolled: #000000;
   --header-foreground: #313638;
+  --header-foreground-supporting: #adadade0;
+  --header-foreground-supporting-scrolled: color-mix(
+    in oklab,
+    var(--header-foreground-supporting) 65%,
+    var(--header-scrolled)
+  );
 
   --card: #0a0a0a;
   --card-foreground: #ffffff;

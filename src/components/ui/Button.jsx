@@ -4,6 +4,8 @@ export default function Button({ href, flavour, children, ...props }) {
     linkButton: "flex h-6 items-center",
     outlinedButton:
       "flex h-6 items-center rounded-full border border-current px-2",
+    underlinedButton:
+      "flex h-6 items-center underline underline-offset-4 decoration-[2px] decoration-[-header] hover:underline-offset-3 hover:text-header-foreground-supporting",
   };
   return (
     <li>
