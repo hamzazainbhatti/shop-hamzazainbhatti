@@ -8,14 +8,14 @@ export default function Button({ href, flavour, children, ...props }) {
     underlinedButton:
       "flex h-6 items-center underline underline-offset-4 decoration-[1.5px] decoration-[-header] hover:underline-offset-[5.5px] hover:text-header-foreground-supporting",
   };
-  return (
-    <li>
-      <button
-        className={`${flavours[flavour]} ${href ? "cursor-pointer" : ""}`}
-        {...props}
-      >
-        {children}
-      </button>
-    </li>
+
+  return href ? (
+    <a href={href} className={`${flavours[flavour]} cursor-pointer`} {...props}>
+      {children}
+    </a>
+  ) : (
+    <button className={`${flavours[flavour]}`} {...props}>
+      {children}
+    </button>
   );
 }

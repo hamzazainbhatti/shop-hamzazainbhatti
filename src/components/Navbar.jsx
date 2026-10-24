@@ -20,40 +20,36 @@ export default function Navbar() {
             : "bg-transparent text-header"
         }`}
       >
-        <nav>
-          <ul className="flex gap-6 h-6">
-            <Button flavour="underlinedButton" href="/">
-              NEW ARRIVAL
-            </Button>
-            <Button flavour="underlinedButton" href="/">
-              MEN
-            </Button>
-            <Button flavour="underlinedButton" href="/">
-              WOMEN
-            </Button>
-            <Button flavour="underlinedButton" href="/shop">
-              SHOP
-            </Button>
-          </ul>
+        <nav className="flex gap-6 h-6">
+          <Button flavour="underlinedButton" href="/">
+            NEW ARRIVAL
+          </Button>
+          <Button flavour="underlinedButton" href="/">
+            MEN
+          </Button>
+          <Button flavour="underlinedButton" href="/">
+            WOMEN
+          </Button>
+          <Button flavour="underlinedButton" href="/shop">
+            SHOP
+          </Button>
         </nav>
-        <nav>
-          <ul className="flex gap-6">
-            <Button flavour="iconButton">
-              <Search size={24} />
-            </Button>
-            <Button flavour="iconButton">
-              <Handbag size={24} />
-            </Button>
-            <Button flavour="iconButton">
-              <Heart size={24} />
-            </Button>
-            <Button flavour="iconButton">
-              <User size={24} />
-            </Button>
-            <Button flavour="outlinedButton" href="/">
-              CONTACT US
-            </Button>
-          </ul>
+        <nav className="flex gap-6">
+          <Button flavour="iconButton">
+            <Search size={24} />
+          </Button>
+          <Button flavour="iconButton">
+            <Handbag size={24} />
+          </Button>
+          <Button flavour="iconButton">
+            <Heart size={24} />
+          </Button>
+          <Button flavour="iconButton">
+            <User size={24} />
+          </Button>
+          <Button flavour="outlinedButton" href="/">
+            CONTACT US
+          </Button>
         </nav>
       </header>
     </>
