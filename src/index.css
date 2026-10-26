@@ -81,7 +81,7 @@
 
   --header: #ffffffcc;
   --header-scrolled: #100f0f;
-  --header-foreground: var(--foreground);
+  --header-foreground: #ffffff;
   --header-foreground-supporting: #adadade0;
   --header-foreground-supporting-scrolled: color-mix(
     in oklab,
@@ -137,7 +137,7 @@
 
   --header: #ffffff;
   --header-scrolled: #000000;
-  --header-foreground: #313638;
+  --header-foreground: #ffffff;
   --header-foreground-supporting: #adadade0;
   --header-foreground-supporting-scrolled: color-mix(
     in oklab,

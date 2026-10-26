@@ -1,13 +1,11 @@
 import Navbar from "./components/Navbar";
-import Hero from "./sections/Hero";
+import { Outlet } from "react-router";
 
-function App() {
+export default function App() {
   return (
     <>
       <Navbar />
-      <Hero />
+      <Outlet />
     </>
   );
 }
-
-export default App;

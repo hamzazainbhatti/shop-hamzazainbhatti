@@ -17,24 +17,24 @@ export default function Navbar() {
         className={`fixed z-10 flex w-dvw items-center justify-between px-15 py-6 font-sans text-sm font-medium transition-colors duration-300 ease-linear ${
           scrolled
             ? "bg-header text-header-scrolled backdrop-blur-md"
-            : "bg-transparent text-header"
+            : "bg-transparent text-header-foreground"
         }`}
       >
-        <nav className="flex gap-6 h-6">
-          <Button flavour="underlinedButton" href="/">
+        <nav className="flex h-6 items-center gap-6">
+          <Button flavour="underlinedButton" to="/new-arrivals">
             NEW ARRIVAL
           </Button>
-          <Button flavour="underlinedButton" href="/">
+          <Button flavour="underlinedButton" to="/men">
             MEN
           </Button>
-          <Button flavour="underlinedButton" href="/">
+          <Button flavour="underlinedButton" to="/women">
             WOMEN
           </Button>
-          <Button flavour="underlinedButton" href="/shop">
+          <Button flavour="underlinedButton" to="/shop">
             SHOP
           </Button>
         </nav>
-        <nav className="flex gap-6">
+        <nav className="flex items-center gap-6">
           <Button flavour="iconButton">
             <Search size={24} />
           </Button>
@@ -47,7 +47,7 @@ export default function Navbar() {
           <Button flavour="iconButton">
             <User size={24} />
           </Button>
-          <Button flavour="outlinedButton" href="/">
+          <Button flavour="outlinedButton" to="/about">
             CONTACT US
           </Button>
         </nav>
