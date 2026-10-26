@@ -2,8 +2,8 @@ import Hero from "@/sections/Hero";
 
 export default function HomePage() {
   return (
-    <div>
+    <main>
       <Hero />
-    </div>
+    </main>
   );
 }

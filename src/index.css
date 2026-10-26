@@ -12,7 +12,7 @@
   }
 
   to {
-    background-position: center top;
+    background-position: center;
     filter: blur(0);
     transform: scale(1);
   }
@@ -26,8 +26,8 @@
 .hero-background::before {
   position: absolute;
   inset: 0;
-  background-image: url("/assets/hero-bg.jpg");
-  background-position: center top;
+  background-image: url("/assets/hero-bg-00.jpg");
+  background-position: center bottom;
   background-size: cover;
   content: "";
   animation: hero-background-pan 1s ease-in-out 500ms both;
@@ -41,12 +41,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-header: var(--header);
-  --color-header-scrolled: var(--header-scrolled);
   --color-header-foreground: var(--header-foreground);
   --color-header-foreground-supporting: var(--header-foreground-supporting);
-  --color-header-foreground-supporting-scrolled: var(
-    --header-foreground-supporting-scrolled
-  );
   --color-foreground-supporting: var(--foreground-supporting);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -68,7 +64,6 @@
 }
 
 :root {
-  --font-style-default: normal;
   --transparent: #00000000;
 
   --background: #fcfcf9;
@@ -79,15 +74,9 @@
     var(--background)
   );
 
-  --header: #ffffffcc;
-  --header-scrolled: #100f0f;
-  --header-foreground: #ffffff;
+  --header: var(--transparent);
+  --header-foreground: #ffffffcc;
   --header-foreground-supporting: #adadade0;
-  --header-foreground-supporting-scrolled: color-mix(
-    in oklab,
-    var(--header-foreground-supporting) 65%,
-    var(--header-scrolled)
-  );
 
   --card: #f7f6f3;
   --card-foreground: #090909;
@@ -120,12 +109,6 @@
   --radius: 0.625rem;
 }
 
-@layer base {
-  body {
-    font-style: var(--font-style-default);
-  }
-}
-
 .dark {
   --background: #000000;
   --foreground: #ffffff;
@@ -135,15 +118,9 @@
     var(--background)
   );
 
-  --header: #ffffff;
-  --header-scrolled: #000000;
-  --header-foreground: #ffffff;
+  --header: #ffffffcc;
+  --header-foreground: #000000;
   --header-foreground-supporting: #adadade0;
-  --header-foreground-supporting-scrolled: color-mix(
-    in oklab,
-    var(--header-foreground-supporting) 65%,
-    var(--header-scrolled)
-  );
 
   --card: #0a0a0a;
   --card-foreground: #ffffff;

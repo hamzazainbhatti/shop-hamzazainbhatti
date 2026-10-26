@@ -12,46 +12,42 @@ export default function Navbar() {
   }, []);
 
   return (
-    <>
-      <header
-        className={`fixed z-10 flex w-dvw items-center justify-between px-15 py-6 font-sans text-sm font-medium transition-colors duration-300 ease-linear ${
-          scrolled
-            ? "bg-header text-header-scrolled backdrop-blur-md"
-            : "bg-transparent text-header-foreground"
-        }`}
-      >
-        <nav className="flex h-6 items-center gap-6">
-          <Button flavour="underlinedButton" to="/new-arrivals">
-            NEW ARRIVAL
-          </Button>
-          <Button flavour="underlinedButton" to="/men">
-            MEN
-          </Button>
-          <Button flavour="underlinedButton" to="/women">
-            WOMEN
-          </Button>
-          <Button flavour="underlinedButton" to="/shop">
-            SHOP
-          </Button>
-        </nav>
-        <nav className="flex items-center gap-6">
-          <Button flavour="iconButton">
-            <Search size={24} />
-          </Button>
-          <Button flavour="iconButton">
-            <Handbag size={24} />
-          </Button>
-          <Button flavour="iconButton">
-            <Heart size={24} />
-          </Button>
-          <Button flavour="iconButton">
-            <User size={24} />
-          </Button>
-          <Button flavour="outlinedButton" to="/about">
-            CONTACT US
-          </Button>
-        </nav>
-      </header>
-    </>
+    <header
+      className={`fixed z-10 flex w-dvw items-center justify-between px-12 py-6 font-sans text-sm font-medium transition-colors duration-300 ease-linear bg-header text-header-foreground ${
+        scrolled ? "dark backdrop-blur-md" : ""
+      }`}
+    >
+      <nav className="flex h-9 items-center gap-6">
+        <Button flavour="underlinedButton" to="/new-arrivals">
+          NEW ARRIVAL
+        </Button>
+        <Button flavour="underlinedButton" to="/men">
+          MEN
+        </Button>
+        <Button flavour="underlinedButton" to="/women">
+          WOMEN
+        </Button>
+        <Button flavour="underlinedButton" to="/shop">
+          SHOP
+        </Button>
+      </nav>
+      <nav className="flex items-center gap-6">
+        <Button flavour="iconButton">
+          <Search size={24} />
+        </Button>
+        <Button flavour="iconButton">
+          <Handbag size={24} />
+        </Button>
+        <Button flavour="iconButton">
+          <Heart size={24} />
+        </Button>
+        <Button flavour="iconButton">
+          <User size={24} />
+        </Button>
+        <Button flavour="outlinedButton" to="/about">
+          CONTACT US
+        </Button>
+      </nav>
+    </header>
   );
 }
