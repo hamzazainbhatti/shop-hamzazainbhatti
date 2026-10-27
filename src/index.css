@@ -93,7 +93,7 @@
   --header-foreground-supporting: #adadade0;
 
   --card: #f7f6f3;
-  --card-foreground: #090909;
+  --card-foreground: #010101;
   --card-foreground-supporting: color-mix(
     in oklab,
     var(--card-foreground) 65%,

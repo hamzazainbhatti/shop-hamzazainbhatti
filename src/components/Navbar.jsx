@@ -72,7 +72,7 @@ export default function Navbar() {
         <Button
           flavour="outlinedButton"
           to="/about"
-          className="group relative hidden w-[clamp(8rem,15vw,12rem)] shrink-0 justify-start px-[clamp(0.75rem,1.5vw,1rem)] text-[clamp(0.625rem,0.85vw,0.8125rem)] transition-[width,color,background] duration-300 ease-out hover:w-[clamp(12rem,23vw,18rem)] hover:bg-background/80 hover:text-foreground/80 lg:flex"
+          className="group relative hidden lg:flex w-[clamp(8rem,15vw,12rem)] shrink-0 justify-start px-[clamp(0.75rem,1.5vw,1rem)] text-[clamp(0.625rem,0.85vw,0.8125rem)] transition-[width,color,background] duration-300 ease-out hover:w-[clamp(12rem,23vw,18rem)] hover:bg-background/80 hover:text-foreground/80"
         >
           <p className="transition-transform duration-250 ease-out group-hover:translate-x-full">
             CONTACT US

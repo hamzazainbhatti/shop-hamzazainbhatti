@@ -3,8 +3,8 @@ export const attribution = {
   url: "https://www.vecteezy.com/free-png/t-shirt-mockup",
 };
 
-export const tees = {
-  "black-blank": {
+export const tees = [
+  {
     id: "black-blank",
     slug: "black-blank",
     name: "Blank Black Tee",
@@ -19,7 +19,7 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/70880471-blank-black-t-shirt-front-and-back-mockup",
   },
-  black: {
+  {
     id: "black",
     slug: "black",
     name: "Black Tee",
@@ -34,7 +34,7 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/55802935-black-tshirt-front-and-back-views-are-presented",
   },
-  maroon: {
+  {
     id: "maroon",
     slug: "maroon",
     name: "Maroon Tee",
@@ -49,7 +49,7 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/55802954-maroon-tshirt-front-and-back-views-are-presented",
   },
-  magenta: {
+  {
     id: "magenta",
     slug: "magenta",
     name: "Magenta Tee",
@@ -64,7 +64,7 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/55802947-magenta-pink-tshirt-front-and-back-views-are-presented",
   },
-  "dark-ash": {
+  {
     id: "dark-ash",
     slug: "dark-ash",
     name: "Dark Ash Tee",
@@ -79,7 +79,7 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/55802934-dark-ash-tshirt-front-and-back-views-are-presented",
   },
-  navy: {
+  {
     id: "navy",
     slug: "navy",
     name: "Navy Tee",
@@ -94,7 +94,7 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/55802953-navy-blue-tshirt-front-and-back-views-are-presented",
   },
-  white: {
+  {
     id: "white",
     slug: "white",
     name: "White Tee",
@@ -109,7 +109,7 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/55802936-white-tshirt-front-and-back-views-are-presented",
   },
-  red: {
+  {
     id: "red",
     slug: "red",
     name: "Red Tee",
@@ -124,7 +124,7 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/55802937-red-tshirt-front-and-back-views-are-presented",
   },
-  olive: {
+  {
     id: "olive",
     slug: "olive",
     name: "Olive Tee",
@@ -139,7 +139,7 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/55802933-olive-green-tshirt-front-and-back-views-are-presented",
   },
-  "green-2955": {
+  {
     id: "green-2955",
     slug: "green-2955",
     name: "Emerald Tee",
@@ -154,7 +154,7 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/55802955-green-tshirt-front-and-back-views-are-presented",
   },
-  "green-2945": {
+  {
     id: "green-2945",
     slug: "green-2945",
     name: "Forest Green Tee",
@@ -169,7 +169,7 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/55802945-green-tshirt-front-and-back",
   },
-  "purple-2944": {
+  {
     id: "purple-2944",
     slug: "purple-2944",
     name: "Purple Tee",
@@ -184,7 +184,7 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/55802944-purple-tshirt-front-and-back",
   },
-  "purple-2943": {
+  {
     id: "purple-2943",
     slug: "purple-2943",
     name: "Violet Tee",
@@ -199,7 +199,7 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/55802943-purple-tshirt-front-and-back-views-are-presented",
   },
-  brown: {
+  {
     id: "brown",
     slug: "brown",
     name: "Brown Tee",
@@ -214,7 +214,7 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/55802950-brown-tshirt-front-and-back-views-are-presented",
   },
-  mint: {
+  {
     id: "mint",
     slug: "mint",
     name: "Mint Tee",
@@ -229,6 +229,6 @@ export const tees = {
     attributionUrl:
       "https://www.vecteezy.com/png/55802941-mint-green-tshirt-front-and-back-views-are-presented",
   },
-};
+];
 
 export default tees;
