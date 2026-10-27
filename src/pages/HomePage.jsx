@@ -1,5 +1,6 @@
 import Hero from "@/sections/Hero";
 import QuoteOnScroll from "@/sections/QuoteOnScroll";
+import Store from "@/sections/Store";
 
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
           <footer className="pt-3 text-[0.4em] italic">~ Tom Ford</footer>
         </>
       </QuoteOnScroll>
+      <Store />
     </main>
   );
 }
