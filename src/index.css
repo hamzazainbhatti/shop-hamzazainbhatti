@@ -4,35 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@keyframes hero-background-pan {
-  from {
-    background-position: center bottom;
-    filter: blur(10px);
-    transform: scale(1.2);
-  }
-
-  to {
-    background-position: center;
-    filter: blur(0);
-    transform: scale(1);
-  }
-}
-
-.hero-background {
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-background::before {
-  position: absolute;
-  inset: 0;
-  background-image: url("/assets/hero-bg-02.jpg");
-  background-position: center bottom;
-  background-size: cover;
-  content: "";
-  animation: hero-background-pan 1s ease-in-out 500ms both;
-}
-
 @theme {
   --breakpoint-sm: 40rem; /* 640px */
   --breakpoint-md: 48rem; /* 768px */
