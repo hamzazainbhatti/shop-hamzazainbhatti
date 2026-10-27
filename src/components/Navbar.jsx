@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Search, User, Handbag, Heart, ArrowRight } from "lucide-react";
+import { Search, User, Handbag, Heart, ArrowRight, Menu } from "lucide-react";
 import Button from "./ui/Button";
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false); // TODO: Implement menu toggle functionality
   const [scrolled, setScrolled] = useState(() => window.scrollY > 0);
 
   useEffect(() => {
@@ -13,11 +14,19 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed z-10 flex w-dvw items-center justify-between px-12 py-6 font-sans text-sm font-medium transition-colors duration-300 ease-linear bg-header text-header-foreground ${
+      className={`fixed inset-x-0 top-0 z-10 flex w-full items-center justify-between gap-[clamp(0.25rem,1.2vw,1rem)] bg-header px-[clamp(1rem,4vw,3rem)] py-[clamp(0.75rem,2vw,1.5rem)] font-sans text-[clamp(0.6875rem,0.9vw,0.875rem)] font-medium text-header-foreground transition-colors duration-300 ease-linear ${
         scrolled ? "dark backdrop-blur-md" : ""
       }`}
     >
-      <nav className="flex h-9 w-90 shrink-0 items-center justify-between pl-6">
+      <Button
+        flavour="iconButton"
+        onclick={setMenuOpen}
+        className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0 lg:hidden"
+      >
+        <Menu className="size-[clamp(1rem,1.6vw,1.25rem)]" />
+      </Button>
+
+      <nav className="hidden h-9 w-[min(22.5rem,42vw)] shrink items-center justify-between gap-2 lg:flex">
         <Button flavour="underlinedButton" to="/new-arrivals">
           NEW ARRIVAL
         </Button>
@@ -31,34 +40,44 @@ export default function Navbar() {
           SHOP
         </Button>
       </nav>
-      <nav className="flex h-9 w-120 shrink-0 items-center justify-between pl-6">
-        <Button flavour="iconButton" className="shrink-0">
-          <Search size={24} />
+      <nav className="contents lg:ml-auto lg:flex lg:h-9 lg:min-w-0 lg:w-[min(32rem,45vw)] lg:max-w-[32rem] lg:justify-between">
+        <Button
+          flavour="iconButton"
+          aria-label="Search"
+          className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0"
+        >
+          <Search className="size-[clamp(1rem,1.6vw,1.25rem)]" />
         </Button>
-        <Button flavour="iconButton" className="shrink-0">
-          <Handbag size={24} />
+        <Button
+          flavour="iconButton"
+          aria-label="Shopping bag"
+          className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0"
+        >
+          <Handbag className="size-[clamp(1rem,1.6vw,1.25rem)]" />
         </Button>
-        <Button flavour="iconButton" className="shrink-0">
-          <Heart
-            size={24}
-            className="hover:text-[#ff4444] hover:fill-current"
-          />
+        <Button
+          flavour="iconButton"
+          aria-label="Favorites"
+          className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0"
+        >
+          <Heart className="size-[clamp(1rem,1.6vw,1.25rem)] hover:text-[#ff4444] hover:fill-current" />
         </Button>
-        <Button flavour="iconButton" className="shrink-0">
-          <User size={24} />
+        <Button
+          flavour="iconButton"
+          aria-label="Account"
+          className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0"
+        >
+          <User className="size-[clamp(1rem,1.6vw,1.25rem)]" />
         </Button>
         <Button
           flavour="outlinedButton"
           to="/about"
-          className="relative justify-start w-48 shrink-0 group transition-[width,color,background] duration-300 ease-out hover:w-72 hover:bg-background/80 hover:text-foreground/80"
+          className="group relative hidden w-[clamp(8rem,15vw,12rem)] shrink-0 justify-start px-[clamp(0.75rem,1.5vw,1rem)] text-[clamp(0.625rem,0.85vw,0.8125rem)] transition-[width,color,background] duration-300 ease-out hover:w-[clamp(12rem,23vw,18rem)] hover:bg-background/80 hover:text-foreground/80 lg:flex"
         >
-          <p className="transition-transform duration-150 ease-out group-hover:translate-x-[90%]">
+          <p className="transition-transform duration-250 ease-out group-hover:translate-x-full">
             CONTACT US
           </p>
-          <ArrowRight
-            size={24}
-            className="absolute right-2 transition-transform duration-150 ease-out group-hover:-rotate-45"
-          />
+          <ArrowRight className="absolute right-[clamp(0.5rem,1vw,0.75rem)] size-[clamp(0.875rem,1.4vw,1.125rem)] transition-transform duration-150 ease-out group-hover:-rotate-45" />
         </Button>
       </nav>
     </header>
