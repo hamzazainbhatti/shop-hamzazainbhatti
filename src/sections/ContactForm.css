@@ -1,0 +1,14 @@
+.contact-email {
+  --email-scale: 1.4;
+}
+
+.contact-email h1 {
+  width: min(calc(27.1rem * var(--email-scale)), 100%);
+  font-size: calc(2.25rem * var(--email-scale));
+}
+
+@media (max-width: 48rem) {
+  .contact-email {
+    --email-scale: 0.75;
+  }
+}
