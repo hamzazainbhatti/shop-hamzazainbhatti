@@ -2,7 +2,69 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 @custom-variant dark (&:is(.dark *));
+
+@layer utilities {
+  /*------Custom Scrollbar------*/
+  .custom-scrollbar {
+    overflow: auto;
+  }
+
+  /* Overall scrollbar size */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 15px; /* vertical scrollbar */
+    height: 10px; /* horizontal scrollbar */
+  }
+
+  /* Track behind the thumb */
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--color-transparent);
+    border-radius: 999px;
+  }
+
+  /* The draggable thumb */
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--card-foreground);
+    border: 4px solid var(--card);
+    border-radius: 999px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgb(from var(--card-foreground) r g b / 70%);
+  }
+
+  /* Arrow buttons at the ends */
+  .custom-scrollbar::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  /* Where horizontal and vertical scrollbars meet */
+  .custom-scrollbar::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Track sections before/after the thumb */
+  .custom-scrollbar::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
+
+  /* The resize grip, when the element is resizable */
+  .custom-scrollbar::-webkit-resizer {
+    background: transparent;
+  }
+}
 
 @theme {
   --breakpoint-sm: 40rem; /* 640px */

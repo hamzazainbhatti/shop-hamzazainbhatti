@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import { Search, User, Handbag, Heart, ArrowRight, Menu } from "lucide-react";
 import Button from "./ui/Button";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false); // TODO: Implement menu toggle functionality
   const [scrolled, setScrolled] = useState(() => window.scrollY > 0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 0);
@@ -20,7 +22,7 @@ export default function Navbar() {
     >
       <Button
         flavour="iconButton"
-        onclick={setMenuOpen}
+        onClick={() => setMenuOpen(!menuOpen)}
         className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0 lg:hidden"
       >
         <Menu className="size-[clamp(1rem,1.6vw,1.25rem)]" />
@@ -71,7 +73,7 @@ export default function Navbar() {
         </Button>
         <Button
           flavour="outlinedButton"
-          to="/about"
+          onClick={() => navigate("/#contact")}
           className="group relative hidden lg:flex w-[clamp(8rem,15vw,12rem)] shrink-0 justify-start px-[clamp(0.75rem,1.5vw,1rem)] text-[clamp(0.625rem,0.85vw,0.8125rem)] transition-[width,color,background] duration-300 ease-out hover:w-[clamp(12rem,23vw,18rem)] hover:bg-background/80 hover:text-foreground/80"
         >
           <p className="transition-transform duration-250 ease-out group-hover:translate-x-full">
