@@ -1,4 +1,5 @@
 import ContactForm from "@/sections/ContactForm";
+import Footer from "@/sections/Footer";
 import Hero from "@/sections/Hero";
 import QuoteOnScroll from "@/sections/QuoteOnScroll";
 import Store from "@/sections/Store";
@@ -19,6 +20,7 @@ export default function HomePage() {
       </QuoteOnScroll>
       <Store />
       <ContactForm />
+      <Footer />
     </main>
   );
 }

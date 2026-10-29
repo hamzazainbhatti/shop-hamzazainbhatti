@@ -46,7 +46,7 @@ export default function Hero() {
           backgroundReady ? "hero-background__image--ready" : ""
         }`}
       />
-      <div className="absolute inset-x-[clamp(1rem,4vw,3rem)] bottom-[clamp(1.5rem,5vh,3rem)] flex flex-col items-end gap-[clamp(0.625rem,1.5vh,1.25rem)] md:left-auto md:w-[min(42rem,calc(100vw_-_6rem))]">
+      <div className="absolute inset-x-[clamp(1rem,4vw,3rem)] bottom-[clamp(1.5rem,5vh,3rem)] flex flex-col items-end gap-[clamp(0.625rem,1.5vh,1.25rem)] md:left-auto md:w-[min(42rem,calc(100vw-6rem))]">
         <Button
           flavour="ctaButton"
           to="/shop"

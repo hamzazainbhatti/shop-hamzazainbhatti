@@ -1,5 +1,5 @@
 import Button from "@/components/ui/Button";
-import { tees, attribution } from "@/data/tees";
+import { tees } from "@/data/tees"; // TODO: add attribution
 import { PlusCircle } from "lucide-react";
 
 export default function Store() {
@@ -7,9 +7,9 @@ export default function Store() {
     <div className="grid gap-2 m-2 py-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {tees.map((item) => (
         <div key={item.id} className="relative group/card bg-card rounded-lg">
-          <div className="relative aspect-[9/9] overflow-hidden rounded-xl">
+          <div className="relative aspect-square overflow-hidden rounded-xl">
             <img
-              className="absolute left-0 top-0 h-[100%] w-[200%] max-w-none group-has-[button:hover]/card:drop-shadow-xl/30 group-has-[button:hover]/card:-top-1.5 hover:left-[-100%] transition-all duration-300"
+              className="absolute left-0 top-0 h-full w-[200%] max-w-none group-has-[button:hover]/card:drop-shadow-xl/30 group-has-[button:hover]/card:-top-1.5 hover:-left-full transition-all duration-300"
               src={item.image}
               alt={item.name}
             ></img>
