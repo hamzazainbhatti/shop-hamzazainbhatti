@@ -41,6 +41,7 @@ export default function ContactForm() {
             />
           </label>
         </div>
+        {/*TODO: MAKE INPUT COMPONENT One for input one for textarea*/}
         <label className="w-full">
           <p className="pl-2 text-card-foreground/40">Email:</p>
           <input

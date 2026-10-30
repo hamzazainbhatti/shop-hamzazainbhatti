@@ -1,3 +1,9 @@
+import Store from "@/sections/Store";
+
 export default function WomenPage() {
-  return <div>WomenPage</div>;
+  return (
+    <div>
+      <Store tagsFilters={["women"]} />
+    </div>
+  );
 }

@@ -19,9 +19,9 @@ const router = createBrowserRouter([
       { path: "women", Component: WomenPage },
       { path: "shop", Component: ShopPage },
       { path: "about", Component: AboutPage },
-      { path: "*", Component: PageNotFound },
     ],
   },
+  { path: "*", Component: PageNotFound },
 ]);
 
 export default router;
