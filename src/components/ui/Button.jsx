@@ -13,8 +13,8 @@ export default function Button({ to, flavour, children, className, ...props }) {
   };
   const combinedStyles = twMerge(
     "cursor-pointer",
-    className,
     flavours[flavour],
+    className,
   );
 
   if (to) {

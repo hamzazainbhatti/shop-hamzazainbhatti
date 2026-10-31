@@ -74,9 +74,11 @@ export default function Navbar() {
         <Button
           flavour="outlinedButton"
           onClick={() => navigate("/#contact")}
-          className="group relative hidden lg:flex w-[clamp(8rem,15vw,12rem)] shrink-0 justify-start px-[clamp(0.75rem,1.5vw,1rem)] text-[clamp(0.625rem,0.85vw,0.8125rem)] transition-[width,color,background] duration-300 ease-out hover:w-[clamp(12rem,23vw,18rem)] hover:bg-background/80 hover:text-foreground/80"
+          className="group relative hidden lg:flex w-[clamp(8rem,15vw,12rem)] shrink-0 justify-start px-[clamp(0.75rem,1.5vw,1rem)] text-[clamp(0.625rem,0.85vw,0.8125rem)] transition-[width,color,background] duration-350 ease-out delay-75 hover:w-[clamp(12rem,23vw,18rem)] hover:bg-background/80 hover:text-foreground/80"
         >
-          <p>CONTACT US</p>
+          <p className="transition-transform duration-330 group-hover:translate-x-[100%]">
+            CONTACT US
+          </p>
           <ArrowRight className="absolute right-[clamp(0.5rem,1vw,0.75rem)] size-[clamp(0.875rem,1.4vw,1.125rem)] transition-transform duration-150 ease-out group-hover:-rotate-45" />
         </Button>
       </nav>

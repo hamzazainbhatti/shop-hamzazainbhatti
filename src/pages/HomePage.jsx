@@ -17,7 +17,7 @@ export default function HomePage() {
           <footer className="pt-3 text-[0.4em] italic">~ Tom Ford</footer>
         </>
       </QuoteOnScroll>
-      <Store flagsFilters={["featured"]} tagsFilters={["bright", "women"]} />
+      <Store />
       <ContactForm />
     </main>
   );
