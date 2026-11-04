@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import Button from "@/components/ui/Button";
 
 export default function PageNotFound() {
   return (
@@ -21,12 +21,15 @@ export default function PageNotFound() {
           Whoopsies!! It seems like you've been <br />
           led astray at the bottom of the ocean.
         </h1>
-        <NavLink
+        <Button
+          flavour="solid"
+          size="lg"
+          weight="light"
           to={"/"}
-          className="bg-black/40 px-10 py-2 mt-[20px] text-lg w-[200px] hover:text-black/80 hover:bg-white/70 transition-colors duration-300 cursor-pointer"
+          className="mt-[20px] flex w-[200px] justify-start rounded-none border-0 bg-black/40 px-10 py-2 text-lg text-white hover:bg-white/70 hover:text-black/80 transition-colors duration-300"
         >
           GO HOME
-        </NavLink>
+        </Button>
       </div>
     </div>
   );

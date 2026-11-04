@@ -24,7 +24,6 @@
 
 import Button from "@/components/ui/Button";
 import { tees, validFlags, validTags } from "@/data/tees"; // TODO: add attribution
-import { PlusCircle } from "lucide-react";
 
 export default function Store({
   flagsFilters = ["featured"],
@@ -90,11 +89,14 @@ export default function Store({
                   ${tee.price.toFixed(0)}
                 </p>
                 <Button
-                  flavour="outlinedButton"
-                  className="absolute group/button flex flex-row w-40 bottom-0 right-0 m-4 justify-between pr-1 text-card-foreground-supporting/90 border-card-foreground-supporting/80 hover:bg-card-foreground-supporting/90 hover:text-[#f7f6f3] hover:border-card-foreground-supporting/90 transition-colors duration-200 ease-in-out"
+                  flavour="outline"
+                  icon="plus"
+                  iconClassName="transition-transform duration-400 group-hover/button:rotate-90"
+                  weight="normal"
+                  labelAlign="start"
+                  className="absolute group/button flex flex-row w-40 bottom-0 right-0 m-4 pr-1.5 pl-2.75 justify-between text-card-foreground-supporting/90 border-card-foreground-supporting/80 hover:bg-card-foreground-supporting/90 hover:text-[#f7f6f3] hover:border-card-foreground-supporting/90 transition-colors duration-200 ease-in-out"
                 >
                   Add to Cart
-                  <PlusCircle className="transition-transform duration-400 group-hover/button:rotate-90" />
                 </Button>
               </div>
             );

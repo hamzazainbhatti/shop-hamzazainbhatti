@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router";
-import { Search, User, Handbag, Heart, ArrowRight, Menu } from "lucide-react";
+import { useLocation } from "react-router";
 import Button from "./ui/Button";
 
 export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
   const currentPage = useLocation();
   const bgContrast = currentPage.pathname === "/men" ? "light" : "dark";
   const [scrolled, setScrolled] = useState(() => window.scrollY > 0);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 0);
@@ -22,68 +20,87 @@ export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
       }`}
     >
       <Button
-        flavour="iconButton"
+        flavour="icon"
+        icon="menu"
+        iconClassName="size-[clamp(1rem,1.6vw,1.25rem)]"
+        aria-label="Open menu"
         onClick={() => {
           setNavMenuOpen(true);
           setIsSidebarOpen(true);
         }}
         className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0 lg:hidden"
-      >
-        <Menu className="size-[clamp(1rem,1.6vw,1.25rem)]" />
-      </Button>
+      />
 
       <nav className="hidden h-9 w-[min(22.5rem,42vw)] shrink items-center justify-between gap-2 lg:flex">
-        <Button flavour="underlinedButton" to="/new-arrivals">
+        <Button
+          flavour="nav"
+          to="/new-arrivals"
+          className="text-[clamp(0.6875rem,0.9vw,0.875rem)]"
+        >
           NEW ARRIVAL
         </Button>
-        <Button flavour="underlinedButton" to="/men">
+        <Button
+          flavour="nav"
+          to="/men"
+          className="text-[clamp(0.6875rem,0.9vw,0.875rem)]"
+        >
           MEN
         </Button>
-        <Button flavour="underlinedButton" to="/women">
+        <Button
+          flavour="nav"
+          to="/women"
+          className="text-[clamp(0.6875rem,0.9vw,0.875rem)]"
+        >
           WOMEN
         </Button>
-        <Button flavour="underlinedButton" to="/shop">
+        <Button
+          flavour="nav"
+          to="/shop"
+          className="text-[clamp(0.6875rem,0.9vw,0.875rem)]"
+        >
           SHOP
         </Button>
       </nav>
       <nav className="contents lg:ml-auto lg:flex lg:h-9 lg:min-w-0 lg:w-[min(32rem,45vw)] lg:max-w-[32rem] lg:justify-between">
         <Button
-          flavour="iconButton"
+          flavour="icon"
+          icon="search"
+          iconClassName="size-[clamp(1rem,1.6vw,1.25rem)]"
           aria-label="Search"
           className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0"
-        >
-          <Search className="size-[clamp(1rem,1.6vw,1.25rem)]" />
-        </Button>
+        />
         <Button
-          flavour="iconButton"
+          flavour="icon"
+          icon="bag"
+          iconClassName="size-[clamp(1rem,1.6vw,1.25rem)]"
           aria-label="Shopping bag"
           className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0"
-        >
-          <Handbag className="size-[clamp(1rem,1.6vw,1.25rem)]" />
-        </Button>
+        />
         <Button
-          flavour="iconButton"
+          flavour="icon"
+          icon="heart"
+          iconClassName="size-[clamp(1rem,1.6vw,1.25rem)] hover:text-[#ff4444] hover:fill-current"
           aria-label="Favorites"
           className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0"
-        >
-          <Heart className="size-[clamp(1rem,1.6vw,1.25rem)] hover:text-[#ff4444] hover:fill-current" />
-        </Button>
+        />
         <Button
-          flavour="iconButton"
+          flavour="icon"
+          icon="user"
+          iconClassName="size-[clamp(1rem,1.6vw,1.25rem)]"
           aria-label="Account"
           className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0"
-        >
-          <User className="size-[clamp(1rem,1.6vw,1.25rem)]" />
-        </Button>
+        />
         <Button
-          flavour="outlinedButton"
-          onClick={() => navigate("/#contact")}
-          className={`group relative hidden lg:flex w-[clamp(8rem,15vw,12rem)] shrink-0 justify-start px-[clamp(0.75rem,1.5vw,1rem)] text-[clamp(0.625rem,0.85vw,0.8125rem)] transition-[width,color,background] duration-350 ease-out delay-75 hover:w-[clamp(12rem,23vw,18rem)] hover:bg-background/80 hover:text-foreground/80 ${bgContrast === "light" ? "dark" : null}`}
+          flavour="outline"
+          icon="arrowRight"
+          to="/#contact"
+          iconClassName="absolute right-[clamp(0.5rem,1vw,0.75rem)] size-[clamp(0.875rem,1.4vw,1.125rem)] transition-transform duration-150 ease-out group-hover:-rotate-45"
+          iconPosition="end"
+          labelAlign="start"
+          labelClassName="transition-transform duration-330 group-hover:translate-x-[100%]"
+          className={`group relative hidden lg:flex w-[clamp(8rem,15vw,12rem)] shrink-0 justify-start px-[clamp(0.75rem,1.5vw,1rem)] text-[clamp(0.625rem,0.85vw,0.8125rem)] border-current/50 transition-[width,color,background] duration-350 ease-out delay-75 hover:w-[clamp(12rem,23vw,18rem)] hover:bg-background/80 hover:text-foreground/80 ${bgContrast === "light" ? "dark" : null}`}
         >
-          <p className="transition-transform duration-330 group-hover:translate-x-[100%]">
-            CONTACT US
-          </p>
-          <ArrowRight className="absolute right-[clamp(0.5rem,1vw,0.75rem)] size-[clamp(0.875rem,1.4vw,1.125rem)] transition-transform duration-150 ease-out group-hover:-rotate-45" />
+          CONTACT US
         </Button>
       </nav>
     </header>

@@ -11,9 +11,9 @@ export default function HomePage() {
         {(contentVisible, animateBlurText) => (
           <div className="absolute inset-x-[clamp(1rem,4vw,3rem)] bottom-[clamp(1.5rem,5vh,3rem)] flex flex-col items-end gap-[clamp(0.625rem,1.5vh,1.25rem)] md:left-auto md:w-[min(42rem,calc(100vw-6rem))]">
             <Button
-              flavour="ctaButton"
+              flavour="solid"
               to="/shop"
-              className={`w-[clamp(8.5rem,18vw,13rem)] py-[clamp(0.375rem,0.75vw,0.625rem)] text-[clamp(0.8125rem,1.5vw,1.125rem)] font-medium outline-2 transition-all duration-300 ease-in-out ${
+              className={`w-[clamp(8.5rem,18vw,13rem)] py-[clamp(0.375rem,0.75vw,0.625rem)] text-[clamp(0.8125rem,1.5vw,1.125rem)] font-medium bg-primary text-primary-foreground border-primary-foreground hover:bg-primary-foreground hover:text-primary hover:border-primary-foreground transition-all duration-300 ease-in-out ${
                 contentVisible
                   ? "translate-y-0 opacity-100"
                   : "-translate-y-2 opacity-0"

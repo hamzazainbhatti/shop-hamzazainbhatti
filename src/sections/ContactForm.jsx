@@ -1,3 +1,5 @@
+import Button from "@/components/ui/Button";
+
 function submitContact() {}
 
 export default function ContactForm() {
@@ -60,12 +62,14 @@ export default function ContactForm() {
             placeholder="Type your Message..."
           />
         </label>
-        <button
-          className="mt-5 bg-card-foreground/2 text-card-foreground border-2 border-card-foreground/5 py-2 px-4 rounded-lg hover:bg-foreground hover:text-card transition-colors duration-300"
+        <Button
+          flavour="solid"
+          weight="normal"
           type="submit"
+          className="mt-5 bg-card-foreground/2 text-card-foreground border-2 border-card-foreground/5 py-2 px-4 rounded-lg hover:bg-foreground hover:text-card hover:border-card-foreground/5 transition-colors duration-300"
         >
           Submit
-        </button>
+        </Button>
       </form>
     </div>
   );

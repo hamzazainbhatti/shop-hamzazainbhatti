@@ -1,5 +1,6 @@
-import { ArrowRight, ArrowUpRight, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { NavLink } from "react-router";
+import Button from "./ui/Button";
 
 export default function Sidebar({
   isSidebarOpen,
@@ -28,15 +29,18 @@ export default function Sidebar({
         >
           <div className="flex flex-col w-[80%] h-screen text-foreground font-light bg-background">
             <div className="flex flex-row p-5 justify-end">
-              <button
-                className="cursor-pointer"
+              <Button
+                flavour="icon"
+                size="lg"
+                icon="close"
+                iconClassName="size-[50px] place-self-end"
+                aria-label="Close menu"
+                className="size-[50px]"
                 onClick={() => {
                   setIsSidebarOpen(false);
                   setNavMenuOpen(false);
                 }}
-              >
-                <X size={50} className="place-self-end" />
-              </button>
+              />
             </div>
             <div className="flex flex-col gap-50 overflow-y-scroll scrollbar-none">
               {navMenuOpen ? (
