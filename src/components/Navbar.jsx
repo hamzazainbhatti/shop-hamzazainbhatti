@@ -3,8 +3,7 @@ import { useNavigate } from "react-router";
 import { Search, User, Handbag, Heart, ArrowRight, Menu } from "lucide-react";
 import Button from "./ui/Button";
 
-export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false); // TODO: Implement menu toggle functionality
+export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
   const [scrolled, setScrolled] = useState(() => window.scrollY > 0);
   const navigate = useNavigate();
 
@@ -22,7 +21,10 @@ export default function Navbar() {
     >
       <Button
         flavour="iconButton"
-        onClick={() => setMenuOpen(!menuOpen)}
+        onClick={() => {
+          setNavMenuOpen(true);
+          setIsSidebarOpen(true);
+        }}
         className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0 lg:hidden"
       >
         <Menu className="size-[clamp(1rem,1.6vw,1.25rem)]" />

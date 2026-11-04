@@ -30,7 +30,7 @@ export default function Hero() {
   return (
     <div className="dark hero-background h-dvh">
       <img
-        src="/assets/hero-bg-02.jpg"
+        src="/assets/hero-bg-00.jpg"
         alt=""
         aria-hidden="true"
         fetchPriority="high"
