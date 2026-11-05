@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import Button from "./ui/Button";
-import ActionMenu from "@/ActionMenu";
+import ActionMenu from "@/components/ActionsMenu/ActionsMenuCard";
 
 export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
   const currentPage = useLocation();
@@ -88,7 +88,7 @@ export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
           className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0 z-12"
           onMouseEnter={() => {
             setActionMenuOpened(true);
-            setActionHovered("bag");
+            setActionHovered("cart");
           }}
         />
         <Button
@@ -99,7 +99,7 @@ export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
           className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0 z-12"
           onMouseEnter={() => {
             setActionMenuOpened(true);
-            setActionHovered("heart");
+            setActionHovered("favorites");
           }}
         />
         <Button
