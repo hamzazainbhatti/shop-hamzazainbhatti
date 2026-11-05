@@ -1,11 +1,18 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import Button from "./ui/Button";
+import ActionMenu from "@/ActionMenu";
 
 export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
   const currentPage = useLocation();
   const bgContrast = currentPage.pathname === "/men" ? "light" : "dark";
   const [scrolled, setScrolled] = useState(() => window.scrollY > 0);
+  const [actionMenuOpened, setActionMenuOpened] = useState(false);
+  const [actionHovered, setActionHovered] = useState(null);
+
+  useEffect(() => {
+    console.log(actionMenuOpened);
+  }, [actionMenuOpened]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 0);
@@ -15,7 +22,7 @@ export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-10 flex w-full items-center justify-between gap-[clamp(0.25rem,1.2vw,1rem)] bg-header px-[clamp(1rem,4vw,3rem)] py-[clamp(0.75rem,2vw,1.5rem)] font-sans text-[clamp(0.6875rem,0.9vw,0.875rem)] font-medium ${bgContrast === "light" ? "text-[#545454] backdrop-blur-md" : "text-header-foreground"} transition-colors duration-300 ease-linear ${
+      className={`fixed inset-x-0 top-0 z-10 flex items-center justify-between gap-[clamp(0.25rem,1.2vw,1rem)] bg-header px-[clamp(1rem,4vw,3rem)] py-[clamp(0.75rem,2vw,1.5rem)] font-sans text-[clamp(0.6875rem,0.9vw,0.875rem)] font-medium ${bgContrast === "light" ? "text-[#545454] backdrop-blur-md" : "text-header-foreground"} transition-colors duration-300 ease-linear ${
         scrolled ? "dark backdrop-blur-md" : ""
       }`}
     >
@@ -67,28 +74,44 @@ export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
           icon="search"
           iconClassName="size-[clamp(1rem,1.6vw,1.25rem)]"
           aria-label="Search"
-          className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0"
+          className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0 z-12"
+          onMouseEnter={() => {
+            setActionMenuOpened(true);
+            setActionHovered("search");
+          }}
         />
         <Button
           flavour="icon"
           icon="bag"
           iconClassName="size-[clamp(1rem,1.6vw,1.25rem)]"
           aria-label="Shopping bag"
-          className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0"
+          className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0 z-12"
+          onMouseEnter={() => {
+            setActionMenuOpened(true);
+            setActionHovered("bag");
+          }}
         />
         <Button
           flavour="icon"
           icon="heart"
           iconClassName="size-[clamp(1rem,1.6vw,1.25rem)] hover:text-[#ff4444] hover:fill-current"
           aria-label="Favorites"
-          className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0"
+          className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0 z-12"
+          onMouseEnter={() => {
+            setActionMenuOpened(true);
+            setActionHovered("heart");
+          }}
         />
         <Button
           flavour="icon"
           icon="user"
           iconClassName="size-[clamp(1rem,1.6vw,1.25rem)]"
           aria-label="Account"
-          className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0"
+          className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0 z-12"
+          onMouseEnter={() => {
+            setActionMenuOpened(true);
+            setActionHovered("user");
+          }}
         />
         <Button
           flavour="outline"
@@ -98,11 +121,17 @@ export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
           iconPosition="end"
           labelAlign="start"
           labelClassName="transition-transform duration-330 group-hover:translate-x-[100%]"
-          className={`group relative hidden lg:flex w-[clamp(8rem,15vw,12rem)] shrink-0 justify-start px-[clamp(0.75rem,1.5vw,1rem)] text-[clamp(0.625rem,0.85vw,0.8125rem)] border-current/50 transition-[width,color,background] duration-350 ease-out delay-75 hover:w-[clamp(12rem,23vw,18rem)] hover:bg-background/80 hover:text-foreground/80 ${bgContrast === "light" ? "dark" : null}`}
+          className={`group relative hidden lg:flex w-[clamp(8rem,15vw,12rem)] shrink-0 justify-start px-[clamp(0.75rem,1.5vw,1rem)] text-[clamp(0.625rem,0.85vw,0.8125rem)] border-current/50 transition-[width,color,background] duration-350 ease-out delay-75 hover:w-[clamp(12rem,23vw,18rem)] hover:bg-background/80 hover:text-foreground/80 ${bgContrast === "light" ? "dark" : null} z-12`}
         >
           CONTACT US
         </Button>
       </nav>
+      <ActionMenu
+        actionMenuOpened={actionMenuOpened}
+        setActionMenuOpened={setActionMenuOpened}
+        actionHovered={actionHovered}
+        setActionHovered={setActionHovered}
+      />
     </header>
   );
 }
