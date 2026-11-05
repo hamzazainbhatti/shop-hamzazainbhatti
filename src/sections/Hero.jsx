@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./Hero.css";
 
 // Shared classes: blurred + transparent -> sharp + opaque
 const animateBlurText = (visible) =>
@@ -20,14 +19,14 @@ export default function Hero({ children, backgroundImage }) {
     }
   };
 
-  const handleBackgroundAnimationEnd = (event) => {
-    if (event.animationName === "hero-background-pan") {
+  const handleBackgroundTransitionEnd = (event) => {
+    if (event.propertyName === "scale") {
       setContentVisible(true);
     }
   };
 
   return (
-    <div className="dark hero-background h-dvh">
+    <div className="dark relative h-dvh overflow-hidden">
       <img
         src={backgroundImage}
         alt=""
@@ -40,9 +39,11 @@ export default function Hero({ children, backgroundImage }) {
             event.currentTarget.src,
           )
         }
-        onAnimationEnd={handleBackgroundAnimationEnd}
-        className={`hero-background__image ${
-          backgroundReady ? "hero-background__image--ready" : ""
+        onTransitionEnd={handleBackgroundTransitionEnd}
+        className={`absolute inset-0 size-full object-cover transition-[object-position,filter,scale] duration-1000 ease-in-out delay-500 ${
+          backgroundReady
+            ? "visible object-center blur-0 scale-100"
+            : "invisible object-[center_bottom] blur-[10px] scale-[1.2]"
         }`}
       />
       {children(contentVisible, animateBlurText)}
