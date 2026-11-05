@@ -25,19 +25,16 @@
 import ProductCard from "@/components/ProductCards/ProductCard";
 import { tees, validFlags, validTags } from "@/data/tees"; // TODO: add attribution
 
-export default function Store({
-  flagsFilters = ["featured"],
-  tagsFilters = ["dark"],
-}) {
+export default function Store({ flagsFilters, tagsFilters }) {
   //  prettier-ignore
   const isTagsAndFlagsValid = 
     (
-      flagsFilters.every((flagFilter)=>(
+      (flagsFilters  === undefined || flagsFilters.every((flagFilter)=>(
         validFlags.includes(flagFilter)
-      )) &&
-      tagsFilters.every((tagFilter)=>(
+      ))) &&
+      (tagsFilters === undefined || tagsFilters.every((tagFilter)=>(
         validTags.includes(tagFilter)
-      ))
+      )))
     )
 
   //  Remove comment under it and only God could tell you what filteredTees even is.

@@ -15,7 +15,7 @@ export default function ActionsMenu({
       onMouseLeave={() => {
         setActionMenuOpened(false);
         setActionHovered(null);
-      }}
+      }} // TODO: Fix ActionMenu width on smaller screens
     >
       <div className="absolute z-11 top-18 right-0 p-[10px] w-full bg-card/80 text-card-foreground backdrop-blur-md border-none rounded-2xl">
         {actionHovered === "search" ? <SearchMenu /> : null}
