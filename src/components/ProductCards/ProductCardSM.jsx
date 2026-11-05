@@ -21,7 +21,9 @@ export default function ProductCardSM({ className, inputTeeId }) {
             />
           </div>
           <div className="flex flex-col gap-2 justify-between flex-grow-1 py-4">
-            <h1 className="text-lg">{foundTee.name.toUpperCase()} </h1>
+            <h1 className="text-lg font-medium">
+              {foundTee.name.toUpperCase()}{" "}
+            </h1>
             <h1 className="text-md">{foundTee.description} </h1>
             <h1 className="text-lg">${foundTee.price.toFixed(2)} </h1>
           </div>

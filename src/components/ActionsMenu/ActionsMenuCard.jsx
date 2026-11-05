@@ -11,7 +11,7 @@ export default function ActionsMenu({
 }) {
   return actionMenuOpened ? (
     <div
-      className={`absolute z-11 top-0 right-0 w-[550px] mr-[22px] bg-[#00000000] border-none transition-all duration-1000 ease-in-out ${actionMenuOpened ? "h-21" : "h-0"}`}
+      className={`absolute z-11 top-0 right-0 w-[calc(100vw-150px)] lg:w-[550px] mr-[22px] bg-[#00000000] border-none transition-all duration-1000 ease-in-out ${actionMenuOpened ? "h-21" : "h-0"}`}
       onMouseLeave={() => {
         setActionMenuOpened(false);
         setActionHovered(null);

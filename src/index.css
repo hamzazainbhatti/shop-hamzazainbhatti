@@ -114,6 +114,8 @@ html {
   --font-serif: "Spectral", serif;
   --font-display: "Cormorant Garamond", serif;
   --font-display-stylish: "Pinyon Script", cursive;
+  --font-hero-text: "Montserrat", sans-serif;
+  --font-cursive: "Imperial Script", cursive;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
