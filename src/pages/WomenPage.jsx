@@ -5,8 +5,8 @@ import ProductCardSM from "@/components/ProductCards/ProductCardSM";
 
 export default function WomenPage() {
   return (
-    <>
-      <Hero backgroundImage={"/assets/women-bg-00.jpg"}>
+    <main>
+      <Hero backgroundImage={"/assets/women-bg-00.jpg"} scrollEffect>
         {(contentVisible, animateBlurText) => (
           <div className="relative w-full h-full">
             <div className="absolute inset-x-0 bottom-[40px] flex flex-col items-center lg:items-start gap-[10px] lg:gap-[max(calc(2vw-10px),6px)] lg:left-[max(2vw,1rem)] lg:bottom-[max(2vw,1rem)]">
@@ -37,7 +37,9 @@ export default function WomenPage() {
           </div>
         )}
       </Hero>
-      <Store tagsFilters={["women"]} />
-    </>
+      <section className="relative z-0 flex flex-col bg-background">
+        <Store tagsFilters={["women"]} />
+      </section>
+    </main>
   );
 }

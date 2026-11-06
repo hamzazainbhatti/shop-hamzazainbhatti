@@ -5,7 +5,7 @@ import { FaLinkedin } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer className="dark flex flex-col bg-card text-card-foreground justify-center border-t-2 border-card-foreground/5">
+    <footer className="dark relative z-0 flex flex-col bg-card text-card-foreground justify-center border-t-2 border-card-foreground/5">
       <div className="tracking-[7px] font-display text-[10vw] self-center px-12 py-0">
         COLLARBONE
       </div>

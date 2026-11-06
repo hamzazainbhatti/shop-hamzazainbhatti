@@ -15,10 +15,44 @@ export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
   }, [actionMenuOpened]);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 0);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    let frameId = null;
+    const updateScrolled = () => {
+      frameId = null;
+      const trigger = document.querySelector("[data-navbar-scroll-trigger]");
+
+      setScrolled(
+        trigger
+          ? trigger.dataset.navbarTriggerReady === "true" &&
+              trigger.getBoundingClientRect().bottom <= window.innerHeight
+          : window.scrollY > 0,
+      );
+    };
+    const scheduleUpdate = () => {
+      if (frameId === null) {
+        frameId = window.requestAnimationFrame(updateScrolled);
+      }
+    };
+
+    const trigger = document.querySelector("[data-navbar-scroll-trigger]");
+    const triggerObserver = trigger
+      ? new MutationObserver(scheduleUpdate)
+      : null;
+    triggerObserver?.observe(trigger, {
+      attributes: true,
+      attributeFilter: ["data-navbar-trigger-ready"],
+    });
+
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    scheduleUpdate();
+
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      triggerObserver?.disconnect();
+      if (frameId !== null) window.cancelAnimationFrame(frameId);
+    };
+  }, [currentPage.pathname]);
 
   return (
     <header
