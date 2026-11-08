@@ -158,7 +158,7 @@ export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
           iconPosition="end"
           labelAlign="start"
           labelClassName="transition-transform duration-330 group-hover:translate-x-[100%]"
-          className={`group relative hidden lg:flex w-[clamp(8rem,15vw,12rem)] shrink-0 justify-start px-[clamp(0.75rem,1.5vw,1rem)] text-[clamp(0.625rem,0.85vw,0.8125rem)] border-current/50 transition-[width,color,background] duration-350 ease-out delay-75 hover:w-[clamp(12rem,23vw,18rem)] hover:bg-background/80 hover:text-foreground/80 ${bgContrast === "light" ? "dark" : null} z-12`}
+          className={`group relative hidden lg:flex w-[clamp(8rem,15vw,12rem)] shrink-0 justify-start px-[clamp(0.75rem,1.5vw,1rem)] text-[clamp(0.625rem,0.85vw,0.8125rem)] border-current/50 transition-[width,color,background] duration-350 ease-out hover:w-[clamp(12rem,23vw,18rem)] hover:bg-background/80 hover:text-foreground/80 ${bgContrast === "light" ? "dark" : null} z-12`}
         >
           CONTACT US
         </Button>
