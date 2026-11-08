@@ -19,11 +19,14 @@ export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
     const updateScrolled = () => {
       frameId = null;
       const trigger = document.querySelector("[data-navbar-scroll-trigger]");
+      const runwayHeight = trigger?.getBoundingClientRect().height || 0;
 
       setScrolled(
         trigger
           ? trigger.dataset.navbarTriggerReady === "true" &&
-              trigger.getBoundingClientRect().bottom <= window.innerHeight
+              (runwayHeight <= window.innerHeight
+                ? window.scrollY > 0
+                : trigger.getBoundingClientRect().bottom <= window.innerHeight)
           : window.scrollY > 0,
       );
     };

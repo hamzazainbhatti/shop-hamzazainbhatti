@@ -93,29 +93,36 @@ export default function Hero({
     }
   };
 
+  //  ----------------- UseEffect [SCROLL EFFECT] ( Will only run if scrollEffect is Activated ) -----------------
   useEffect(() => {
     if (!scrollEffect || !backgroundReady) return;
 
     const runwayWrapper = runwayWrapperRef.current;
     const heroWrapper = heroWrapperRef.current;
     const image = imageRef.current;
+
     if (!runwayWrapper || !heroWrapper || !image) return;
 
     let frameId = null;
     const updateScrollEffect = () => {
       frameId = null;
 
-      // CALCULATE the image height based on the viewport dimensions WHILE preserving its aspect ratio.
+      /**
+       *  SET the Image Width as the Viewport Width.
+       *  CALCULATE the Image Height based on what the Image Width was calculated as. (Preserving the Image's Aspect Ratio)
+       *
+       *  */
       const viewportHeight = window.innerHeight;
       const viewportWidth = window.innerWidth;
+
       const imageHeight = getImageHeight(image, viewportWidth, viewportHeight);
 
       // Measure scroll progress and clamp the image pan to its available height.
       const runwayTop =
-        runwayWrapper.getBoundingClientRect().top + window.scrollY;
-      const panDistance = imageHeight - viewportHeight;
-      const scrollProgress = Math.max(0, window.scrollY - runwayTop);
-      const imageOffset = Math.min(scrollProgress, panDistance);
+        runwayWrapper.getBoundingClientRect().top + window.scrollY; //  ( (Distance TO Top edge of runwayWrapper − Distance TO Viewport's top edge) + Distance TO Viewport's top edge ) = Distance TO Top edge of runwayWrapper
+      const panDistance = imageHeight - viewportHeight; // panDistance = Amount of Image Height that was set Off-Screen (Amount of Image height that COULD be scrolled) [FIXED AMOUNT]
+      const scrollProgress = Math.max(0, window.scrollY - runwayTop); // scrollProgress = Distance from top of Runway to window.scrollY
+      const imageOffset = Math.min(scrollProgress, panDistance); // imageOffset = EQUAL to scrollProgress OR Amount of Off-screen Image (If Screen Progress tries to progress BEYOND)
 
       // Begin blurring only after the image has finished panning.
       const blurProgress = Math.min(
@@ -123,12 +130,24 @@ export default function Hero({
         Math.max(0, (scrollProgress - panDistance) / viewportHeight),
       );
 
-      // Keep the Runway Wrapper's Height and Image's Height in sync.
+      /**
+       *  Keep the Runway Wrapper's Height and Image's Height in sync.
+       *  Meaning Runway Wrapper's Height should always be equal to Image's Height.
+       *  NOTE: As we will see later, Image and Runway are same height and it is set that way using the Setter Function below.
+       *        HeroWrapper on the other hand will ALWAYS be 100vh, The wrapper that contains Children.
+       *        Children such as Animated Text, Call to Action Button, Small Product Cards.
+       *
+       *  */
       setRunwayHeight((currentRunwayHeight) =>
         currentRunwayHeight === imageHeight ? currentRunwayHeight : imageHeight,
       );
 
-      // APPLY the image height based on the viewport dimensions WHILE preserving its aspect ratio.
+      /**
+       *  APPLY the CALCULATED Image Width as the Viewport Width.
+       *  APPLY the CALCULATED Image Height as imageHeight.
+       *  APPLY the CALCULATED Image Offset as imageOffset.
+       *
+       *  */
       image.style.width = `${viewportWidth}px`;
       image.style.height = `${imageHeight}px`;
       image.style.transform = `translateY(-${imageOffset}px)`;
