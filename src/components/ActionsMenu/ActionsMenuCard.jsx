@@ -8,6 +8,9 @@ export default function ActionsMenu({
   setActionMenuOpened,
   actionHovered,
   setActionHovered,
+
+  setIsSidebarOpen,
+  setCartPanelOpen,
 }) {
   return actionMenuOpened ? (
     <div
@@ -19,7 +22,12 @@ export default function ActionsMenu({
     >
       <div className="absolute z-11 top-18 right-0 p-[10px] w-full bg-card/80 text-card-foreground backdrop-blur-md border-none rounded-2xl">
         {actionHovered === "search" ? <SearchMenu /> : null}
-        {actionHovered === "cart" ? <CartMenu /> : null}
+        {actionHovered === "cart" ? (
+          <CartMenu
+            setCartPanelOpen={setCartPanelOpen}
+            setIsSidebarOpen={setIsSidebarOpen}
+          />
+        ) : null}
         {actionHovered === "favorites" ? <FavoritesMenu /> : null}
         {actionHovered === "user" ? <UserMenu /> : null}
       </div>

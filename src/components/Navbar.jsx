@@ -3,16 +3,16 @@ import { useLocation } from "react-router";
 import Button from "./ui/Button";
 import ActionMenu from "@/components/ActionsMenu/ActionsMenuCard";
 
-export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
+export default function Navbar({
+  setIsSidebarOpen,
+  setNavPanelOpen,
+  setCartPanelOpen,
+}) {
   const currentPage = useLocation();
   const bgContrast = currentPage.pathname === "/men" ? "light" : "dark";
   const [scrolled, setScrolled] = useState(() => window.scrollY > 0);
   const [actionMenuOpened, setActionMenuOpened] = useState(false);
   const [actionHovered, setActionHovered] = useState(null);
-
-  useEffect(() => {
-    console.log(actionMenuOpened);
-  }, [actionMenuOpened]);
 
   useEffect(() => {
     let frameId = null;
@@ -69,7 +69,7 @@ export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
         iconClassName="size-[clamp(1rem,1.6vw,1.25rem)]"
         aria-label="Open menu"
         onClick={() => {
-          setNavMenuOpen(true);
+          setNavPanelOpen(true);
           setIsSidebarOpen(true);
         }}
         className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0 lg:hidden"
@@ -99,10 +99,10 @@ export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
         </Button>
         <Button
           flavour="nav"
-          to="/shop"
+          to="/shirts"
           className="text-[clamp(0.6875rem,0.9vw,0.875rem)]"
         >
-          SHOP
+          SHIRTS
         </Button>
       </nav>
       <nav className="contents lg:ml-auto lg:flex lg:h-9 lg:min-w-0 lg:w-[min(32rem,45vw)] lg:max-w-[32rem] lg:justify-between">
@@ -126,6 +126,10 @@ export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
           onMouseEnter={() => {
             setActionMenuOpened(true);
             setActionHovered("cart");
+          }}
+          onClick={() => {
+            setCartPanelOpen(true);
+            setIsSidebarOpen(true);
           }}
         />
         <Button
@@ -168,6 +172,8 @@ export default function Navbar({ setIsSidebarOpen, setNavMenuOpen }) {
         setActionMenuOpened={setActionMenuOpened}
         actionHovered={actionHovered}
         setActionHovered={setActionHovered}
+        setCartPanelOpen={setCartPanelOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
       />
     </header>
   );

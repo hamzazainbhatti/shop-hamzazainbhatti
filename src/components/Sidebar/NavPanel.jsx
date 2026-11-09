@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { NavLink } from "react-router";
 
-export default function NavMenu({ closeSidebar }) {
+export default function NavPanel({ closeSidebar }) {
   const navigationLinks = [
     { name: "Home", href: "/" },
     { name: "New Arrival", href: "/new-arrival" },

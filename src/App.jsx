@@ -7,12 +7,14 @@ import { CartProvider } from "./context/CartContext";
 
 export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [navMenuOpen, setNavMenuOpen] = useState(false);
+  const [navPanelOpen, setNavPanelOpen] = useState(false);
+  const [cartPanelOpen, setCartPanelOpen] = useState(false);
   return (
     <CartProvider>
       <Navbar
         setIsSidebarOpen={setIsSidebarOpen}
-        setNavMenuOpen={setNavMenuOpen}
+        setNavPanelOpen={setNavPanelOpen}
+        setCartPanelOpen={setCartPanelOpen}
       />
       <Outlet />
       <ScrollRestoration />
@@ -20,8 +22,10 @@ export default function App() {
       <Sidebar
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
-        navMenuOpen={navMenuOpen}
-        setNavMenuOpen={setNavMenuOpen}
+        navPanelOpen={navPanelOpen}
+        setNavPanelOpen={setNavPanelOpen}
+        cartPanelOpen={cartPanelOpen}
+        setCartPanelOpen={setCartPanelOpen}
       />
     </CartProvider>
   );

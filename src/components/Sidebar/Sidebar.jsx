@@ -1,16 +1,16 @@
 import { ArrowUpRight } from "lucide-react";
 import { useEffect } from "react";
 import Button from "../ui/Button";
-import NavMenu from "./NavMenu";
-import CartMenu from "./CartMenu";
+import NavPanel from "./NavPanel";
+import CartPanel from "./CartPanel";
 
 export default function Sidebar({
   isSidebarOpen,
   setIsSidebarOpen,
-  navMenuOpen,
-  setNavMenuOpen,
-  cartMenuOpen = true,
-  setCartMenuOpen,
+  navPanelOpen,
+  setNavPanelOpen,
+  cartPanelOpen,
+  setCartPanelOpen,
 }) {
   useEffect(() => {
     isSidebarOpen
@@ -25,19 +25,17 @@ export default function Sidebar({
     { name: "Twitter", href: "/" },
   ];
 
-  isSidebarOpen = true; // Testing
-
   return (
     <>
       {isSidebarOpen ? (
         <div
-          className={`fixed flex flex-row z-1000 inset-0 w-screen max-w-full backdrop-blur-2xl ${navMenuOpen ? "justify-start" : null} ${cartMenuOpen ? "justify-end" : null}`}
+          className={`fixed flex flex-row z-1000 inset-0 w-screen max-w-full backdrop-blur-2xl ${navPanelOpen ? "justify-start" : null} ${cartPanelOpen ? "justify-end" : null}`}
         >
           <div
             className={`flex flex-col w-full  h-screen text-foreground font-light bg-background`}
           >
             <div
-              className={`flex flex-row p-5 ${navMenuOpen ? "justify-end" : null} ${cartMenuOpen ? "justify-start" : null} `}
+              className={`flex flex-row p-5 ${navPanelOpen ? "justify-end" : null} ${cartPanelOpen ? "justify-start" : null} `}
             >
               <Button
                 flavour="icon"
@@ -48,24 +46,24 @@ export default function Sidebar({
                 className="size-[50px]"
                 onClick={() => {
                   setIsSidebarOpen(false);
-                  navMenuOpen ? setNavMenuOpen(false) : null;
-                  cartMenuOpen ? setCartMenuOpen(false) : null;
+                  navPanelOpen ? setNavPanelOpen(false) : null;
+                  cartPanelOpen ? setCartPanelOpen(false) : null;
                 }}
               />
             </div>
             <div className="flex flex-col gap-50 overflow-y-scroll scrollbar-none">
-              {navMenuOpen ? (
-                <NavMenu
+              {navPanelOpen ? (
+                <NavPanel
                   closeSidebar={() => {
-                    setNavMenuOpen(false);
+                    setNavPanelOpen(false);
                     setIsSidebarOpen(false);
                   }}
                 />
               ) : null}
-              {cartMenuOpen ? (
-                <CartMenu
+              {cartPanelOpen ? (
+                <CartPanel
                   closeSidebar={() => {
-                    setCartMenuOpen(false);
+                    setCartPanelOpen(false);
                     setIsSidebarOpen(false);
                   }}
                 />
@@ -76,6 +74,7 @@ export default function Sidebar({
                 </h1>
                 {socialLinks.map((socialLink) => (
                   <a
+                    key={socialLink.name + "Link"}
                     href={`${socialLink.href}`}
                     className="flex items-center gap-2 font-medium text-2xl"
                   >

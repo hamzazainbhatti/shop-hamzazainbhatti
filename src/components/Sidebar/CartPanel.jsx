@@ -1,7 +1,7 @@
 import { useCart } from "@/context/CartContext";
 import { Minus, Plus } from "lucide-react";
 
-export default function CartMenu() {
+export default function CartPanel() {
   const { cart, totalCost } = useCart();
   const columns = ["", "Product", "Price", "Amount", "Total"];
 
@@ -34,7 +34,10 @@ export default function CartMenu() {
               </div>
               <div className="my-2">
                 {cartItem.sizes.map((size) => (
-                  <span className="mx-1 py-1 px-2 bg-card-foreground/20 rounded-2xl">
+                  <span
+                    key={size + "Of" + cartItem.name}
+                    className="mx-1 py-1 px-2 bg-card-foreground/20 rounded-2xl"
+                  >
                     {size}
                   </span>
                 ))}

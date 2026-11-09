@@ -1,10 +1,24 @@
 import Button from "@/components/ui/Button";
+import { useCart } from "@/context/CartContext";
 
-export default function CartMenu() {
+export default function CartMenu({ setCartPanelOpen, setIsSidebarOpen }) {
+  const { cart } = useCart();
   return (
     <div className="flex flex-row p-4 gap-4 items-center justify-between">
-      <h1 className="text-xl">Cart is Empty.</h1>
-      <Button flavour="solid" size="sm" className="px-12 ">
+      {cart.length <= 0 ? (
+        <h1 className="text-xl">Cart is Empty.</h1>
+      ) : (
+        <h1 className="text-xl">{`Cart has ${cart.length} Items.`}</h1>
+      )}
+      <Button
+        flavour="solid"
+        size="sm"
+        className="px-12 "
+        onClick={() => {
+          setCartPanelOpen(true);
+          setIsSidebarOpen(true);
+        }}
+      >
         Open Cart
       </Button>
     </div>
