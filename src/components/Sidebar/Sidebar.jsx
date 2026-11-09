@@ -11,15 +11,6 @@ export default function Sidebar({
   setNavMenuOpen,
   cartMenuOpen = true,
   setCartMenuOpen,
-  cartIDsAndAmounts = [
-    { teeID: "black", amount: 1 },
-    { teeID: "dark-gray", amount: 1 },
-    { teeID: "maroon", amount: 1 },
-    { teeID: "dark-ash", amount: 1 },
-    { teeID: "white", amount: 1 },
-    { teeID: "olive", amount: 1 },
-    { teeID: "mint", amount: 1 },
-  ],
 }) {
   useEffect(() => {
     isSidebarOpen
@@ -43,7 +34,7 @@ export default function Sidebar({
           className={`fixed flex flex-row z-1000 inset-0 w-screen max-w-full backdrop-blur-2xl ${navMenuOpen ? "justify-start" : null} ${cartMenuOpen ? "justify-end" : null}`}
         >
           <div
-            className={`flex flex-col ${navMenuOpen ? "w-full md:w-[80%]" : null} ${cartMenuOpen ? "w-full md:w-[40%]" : null} h-screen text-foreground font-light bg-background`}
+            className={`flex flex-col w-full  h-screen text-foreground font-light bg-background`}
           >
             <div
               className={`flex flex-row p-5 ${navMenuOpen ? "justify-end" : null} ${cartMenuOpen ? "justify-start" : null} `}
@@ -73,7 +64,6 @@ export default function Sidebar({
               ) : null}
               {cartMenuOpen ? (
                 <CartMenu
-                  cartIDsAndAmounts={cartIDsAndAmounts}
                   closeSidebar={() => {
                     setCartMenuOpen(false);
                     setIsSidebarOpen(false);
