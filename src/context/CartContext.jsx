@@ -3,6 +3,10 @@ import tees from "@/data/tees";
 import { getItem, setItem } from "@/utils/localStorage";
 
 const CartContext = createContext(null);
+
+function getCartItemId({ teeID, finish, size, gender }) {
+  return [teeID, finish, size, gender].join("-");
+}
 //  prettier-ignore
 /**
  * Sample cart items:
@@ -22,6 +26,19 @@ export function CartProvider({ children }) {
   const [totalCost, setTotalCost] = useState(0);
   const [cartLocalStorage, setCartLocalStorage] = useState(getItem("cart")||[]);
 
+  function updateCartItemQuantity(cartItemId, newQuantity) {
+    setCartLocalStorage((previousItems) => {
+      const updatedItems = previousItems.map((item) => {
+        const itemId = getCartItemId(item);
+        if (itemId === cartItemId) {
+          return { ...item, amount: newQuantity };
+        }
+        return item;
+      });
+      return updatedItems;
+    });
+  }
+
   function addToCart(teeID, amount, finish, size, gender) {
     setCartLocalStorage((previousItems) => {
       const existingItemIndex = previousItems.findIndex(
@@ -40,7 +57,16 @@ export function CartProvider({ children }) {
         );
       }
 
-      return [...previousItems, { teeID, amount, finish, size, gender }];
+      return [
+        ...previousItems,
+        {
+          teeID,
+          amount,
+          finish,
+          size,
+          gender,
+        },
+      ];
     });
   }
 
@@ -53,6 +79,7 @@ export function CartProvider({ children }) {
           setCart((prevCart) => [
             ...prevCart,
             {
+              cartItemId: getCartItemId(cartItem),
               id: tee.id,
               slug: tee.slug,
               name: tee.name,
@@ -74,7 +101,7 @@ export function CartProvider({ children }) {
   }, [cartLocalStorage]);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, totalCost }}>
+    <CartContext.Provider value={{ cart, addToCart, totalCost, updateCartItemQuantity }}>
       {children}
     </CartContext.Provider>
   );
