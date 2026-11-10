@@ -17,7 +17,16 @@ export default function CartPanel() {
       <div className="flex flex-col divide-card-foreground/10 divide-y-2">
         {cart.map((cartItem) => (
           <div
-            key={cartItem.id}
+            key={
+              cartItem.amount +
+              cartItem.id +
+              "With" +
+              cartItem.size +
+              "And" +
+              cartItem.finish +
+              "For" +
+              cartItem.gender
+            }
             className="grid grid-cols-[96px_1fr_100px_170px_100px] mx-4 py-4"
           >
             <div className="h-25 w-25 overflow-hidden flex-shrink-0">
@@ -33,14 +42,9 @@ export default function CartPanel() {
                 {cartItem.description}
               </div>
               <div className="my-2">
-                {cartItem.sizes.map((size) => (
-                  <span
-                    key={size + "Of" + cartItem.name}
-                    className="mx-1 py-1 px-2 bg-card-foreground/20 rounded-2xl"
-                  >
-                    {size}
-                  </span>
-                ))}
+                <span className="mx-1 py-1 px-2 bg-card-foreground/20 rounded-2xl">
+                  {cartItem.size}
+                </span>
               </div>
             </div>
             <div className="p-2 self-center">${cartItem.price}</div>
