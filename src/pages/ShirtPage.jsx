@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Navigate } from "react-router";
 import tees from "@/data/tees";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
-import { useEffect, useState } from "react";
 
 export default function ShirtPage() {
   const [selections, setSelections] = useState(["", "", ""]);
@@ -32,6 +32,7 @@ export default function ShirtPage() {
               <Button
                 className="w-full text-card/75 hover:bg-secondary hover:text-foreground/60 hover:border-secondary transition-all duration-300 ease-in-out border-current/40"
                 disabled={!ready}
+                onClick={() => console.log("CLICKED")}
               >
                 Add to Cart
               </Button>
@@ -45,7 +46,7 @@ export default function ShirtPage() {
           <div className="flex flex-col gap-4">
             <Dropdown
               label="Select your Size."
-              options={["Small", "Medium", "Large", "Extra Large"]}
+              options={tee.sizes} // ["Small", "Medium", "Large", "Extra Large"]
               onSelect={(selection) =>
                 setSelections((previous) =>
                   previous.map((value, index) =>
@@ -56,7 +57,13 @@ export default function ShirtPage() {
             />
             <Dropdown
               label="Select your fabric finish."
-              options={["Textured", "Matte", "Smooth", "Shiny"]}
+              options={tee.tags.filter(
+                (finish) =>
+                  (finish === "textured" ? finish : null) ||
+                  (finish === "matte" ? finish : null) ||
+                  (finish === "smooth" ? finish : null) ||
+                  (finish === "shiny" ? finish : null),
+              )} // ["Textured", "Matte", "Smooth", "Shiny"]
               onSelect={(selection) =>
                 setSelections((previous) =>
                   previous.map((value, index) =>
@@ -67,7 +74,16 @@ export default function ShirtPage() {
             />
             <Dropdown
               label="Select your T-Shirt Shape"
-              options={["Men", "Women", "Unisex"]}
+              options={
+                (tee.tags.includes("men") && tee.tags.includes("women")
+                  ? ["unisex", "men", "women"]
+                  : null) ||
+                tee.tags.filter(
+                  (finish) =>
+                    (finish === "men" ? finish : null) ||
+                    (finish === "women" ? finish : null),
+                )
+              } // ["Men", "Women", "Unisex"]
               onSelect={(selection) =>
                 setSelections((previous) =>
                   previous.map((value, index) =>
