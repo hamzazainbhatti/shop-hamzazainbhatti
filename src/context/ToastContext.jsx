@@ -1,20 +1,30 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 
 const ToastContext = createContext(null);
+const MAX_TOASTS = 3;
 
 export function ToastProvider({ children }) {
-  const [toast, setToast] = useState({ id: 0, message: "" });
+  const [toasts, setToasts] = useState([]);
+  const nextToastId = useRef(0);
 
-  function showToast(message) {
-    setToast((previous) => ({
-      id: previous.id + 1,
-      message,
-    }));
+  function showToast(message, type = "success") {
+    nextToastId.current += 1;
+    const id = nextToastId.current;
+    setToasts((previousToasts) => {
+      const toasts =
+        previousToasts.length < MAX_TOASTS
+          ? previousToasts
+          : previousToasts.map((toast, index) =>
+              index === 0 ? { ...toast, closing: true } : toast,
+            );
+
+      return [...toasts, { id, message, type, closing: false }];
+    });
   }
 
   return (
-    <ToastContext.Provider value={{ toast, showToast }}>
+    <ToastContext.Provider value={{ toasts, setToasts, showToast }}>
       {children}
     </ToastContext.Provider>
   );

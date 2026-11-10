@@ -133,7 +133,7 @@ export default function ShirtPage() {
                     selections[1],
                     selections[2],
                   );
-                  showToast("Item added to cart");
+                  showToast("Item added to cart", "success");
                 }}
               >
                 Add to Cart
