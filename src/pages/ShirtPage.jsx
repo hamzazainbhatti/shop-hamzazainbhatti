@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { Navigate } from "react-router";
 import tees from "@/data/tees";
 import { useCart } from "@/context/CartContext";
+import { useToast } from "@/context/ToastContext";
 import Button from "@/components/ui/Button";
 import { Minus, Plus } from "lucide-react";
 
@@ -38,6 +39,7 @@ export default function ShirtPage() {
   const teeID = useParams().teeID;
   const tee = tees.find((tee) => tee.id === teeID) || null;
   const { addToCart } = useCart();
+  const { showToast } = useToast();
   const ready = selections.every(Boolean);
   const [quantity, setQuantity] = useState(1);
 
@@ -123,15 +125,16 @@ export default function ShirtPage() {
               <Button
                 className="w-full text-card/75 hover:bg-secondary hover:text-foreground/60 hover:border-secondary transition-all duration-300 ease-in-out border-current/40"
                 disabled={!ready}
-                onClick={() =>
+                onClick={() => {
                   addToCart(
                     teeID,
                     quantity,
                     selections[0],
                     selections[1],
                     selections[2],
-                  )
-                }
+                  );
+                  showToast("Item added to cart");
+                }}
               >
                 Add to Cart
               </Button>
