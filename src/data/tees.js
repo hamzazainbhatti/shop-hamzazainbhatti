@@ -3,6 +3,7 @@ export const attribution = {
   url: "https://www.vecteezy.com/free-png/t-shirt-mockup",
 };
 
+export const validFlags = ["inStock", "featured"];
 export const validTags = [
   "men",
   "women",
@@ -17,7 +18,11 @@ export const validTags = [
   "earthy",
 ];
 
-export const validFlags = ["inStock", "featured"];
+export const catagoryGroups = {
+  size: ["Small", "Medium", "Large", "Extra Large"],
+  finish: ["Textured", "Matte", "Smooth", "Shiny"],
+  gender: ["Men", "Women"],
+};
 
 export const tees = [
   {

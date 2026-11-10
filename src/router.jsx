@@ -5,6 +5,7 @@ import MenPage from "./pages/MenPage.jsx";
 import NewArrivalsPage from "./pages/NewArrivalsPage.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
 import ShirtsPage from "./pages/ShirtsPage.jsx";
+import ShirtPage from "./pages/ShirtPage.jsx";
 import WomenPage from "./pages/WomenPage.jsx";
 import App from "./App.jsx";
 
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "men", Component: MenPage },
       { path: "women", Component: WomenPage },
       { path: "shirts", Component: ShirtsPage },
+      { path: "shirt/:teeID", Component: ShirtPage },
       { path: "about", Component: AboutPage },
     ],
   },

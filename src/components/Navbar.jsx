@@ -8,8 +8,11 @@ export default function Navbar({
   setNavPanelOpen,
   setCartPanelOpen,
 }) {
-  const currentPage = useLocation();
-  const bgContrast = currentPage.pathname === "/men" ? "light" : "dark";
+  const currentPage = useLocation().pathname;
+  const bgContrast =
+    currentPage === "/men" || currentPage.startsWith("/shirt/")
+      ? "light"
+      : "dark";
   const [scrolled, setScrolled] = useState(() => window.scrollY > 0);
   const [actionMenuOpened, setActionMenuOpened] = useState(false);
   const [actionHovered, setActionHovered] = useState(null);
