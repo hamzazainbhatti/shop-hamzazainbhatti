@@ -43,6 +43,24 @@ export default function ShirtPage() {
 
   return tee ? (
     <div className="grid grid-cols-3 p-4 pt-[96px] h-[600px] min-h-screen w-[100vh-32px] gap-4">
+      <div className="flex flex-col justify-center bg-primary/20 text-primary/20 rounded-lg">
+        <div className="w-full aspect-square overflow-hidden flex-shrink-0">
+          <img
+            src={tee.image}
+            alt={tee.name}
+            className="size-full object-cover object-left p-1 pl-3"
+          />
+        </div>
+      </div>
+      <div className="flex flex-col justify-center bg-primary/20 text-primary/20 rounded-lg">
+        <div className="w-full aspect-square overflow-hidden flex-shrink-0">
+          <img
+            src={tee.image}
+            alt={tee.name}
+            className="size-full object-cover object-right p-1 pr-3"
+          />
+        </div>
+      </div>
       <div className="grid grid-rows-[1fr_auto_auto]">
         <div className="flex flex-col gap-2 p-4 justify-between">
           <div>
@@ -53,7 +71,7 @@ export default function ShirtPage() {
             ${tee.price.toFixed(2)}
           </div>
         </div>
-        <div className="bg-primary/5 text-primary/60 p-4">
+        <div className="bg-primary/5 text-primary/60 p-4 rounded-lg">
           <div className="flex flex-col gap-4">
             <OptionTags
               label="Fabric finish"
@@ -136,24 +154,6 @@ export default function ShirtPage() {
               </button>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="flex flex-col justify-center bg-primary/20 text-primary/20">
-        <div className="w-full aspect-square overflow-hidden flex-shrink-0">
-          <img
-            src={tee.image}
-            alt={tee.name}
-            className="size-full object-cover object-left p-1 pl-3"
-          />
-        </div>
-      </div>
-      <div className="flex flex-col justify-center bg-primary/20 text-primary/20">
-        <div className="w-full aspect-square overflow-hidden flex-shrink-0">
-          <img
-            src={tee.image}
-            alt={tee.name}
-            className="size-full object-cover object-right p-1 pr-3"
-          />
         </div>
       </div>
     </div>

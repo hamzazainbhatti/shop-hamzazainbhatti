@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import Button from "./ui/Button";
 import ActionMenu from "@/components/ActionsMenu/ActionsMenuCard";
+import { useCart } from "@/context/CartContext";
 
 export default function Navbar({
   setIsSidebarOpen,
   setNavPanelOpen,
   setCartPanelOpen,
 }) {
+  const { cart } = useCart();
   const currentPage = useLocation().pathname;
   const bgContrast =
     currentPage === "/men" || currentPage.startsWith("/shirt/")
@@ -16,6 +18,28 @@ export default function Navbar({
   const [scrolled, setScrolled] = useState(() => window.scrollY > 0);
   const [actionMenuOpened, setActionMenuOpened] = useState(false);
   const [actionHovered, setActionHovered] = useState(null);
+  const [isBlinking, setIsBlinking] = useState(false);
+
+  const closeActionMenu = () => {
+    setActionMenuOpened(false);
+    setActionHovered(null);
+  };
+
+  const [previousCartLength, setPreviousCartLength] = useState(cart.length);
+
+  useEffect(() => {
+    if (cart.length > previousCartLength) {
+      setIsBlinking(true);
+
+      const timer = setTimeout(() => {
+        setIsBlinking(false);
+      }, 270);
+
+      return () => clearTimeout(timer);
+    }
+
+    setPreviousCartLength(cart.length);
+  }, [cart.length, previousCartLength]);
 
   useEffect(() => {
     let frameId = null;
@@ -120,21 +144,33 @@ export default function Navbar({
             setActionHovered("search");
           }}
         />
-        <Button
-          flavour="icon"
-          icon="bag"
-          iconClassName="size-[clamp(1rem,1.6vw,1.25rem)]"
-          aria-label="Shopping bag"
-          className="size-[clamp(2rem,3.3vw,2.5rem)] shrink-0 z-12"
-          onMouseEnter={() => {
-            setActionMenuOpened(true);
-            setActionHovered("cart");
-          }}
-          onClick={() => {
-            setCartPanelOpen(true);
-            setIsSidebarOpen(true);
-          }}
-        />
+        <div className="relative size-[clamp(2rem,3.3vw,2.5rem)] shrink-0 z-12">
+          {cart.length > 0 ? (
+            <div className="flex flex-col absolute w-4 h-4 top-[2px] right-[2px] rounded-4xl text-[12px] bg-[#ffbb99aa] text-center justify-center">
+              <p>{cart.length}</p>
+            </div>
+          ) : null}
+          <Button
+            flavour="icon"
+            icon="bag"
+            iconClassName={`size-[clamp(1rem,1.6vw,1.25rem)] transition-transform ease-in-out duration-270 ${
+              isBlinking ? "!stroke-[2.4]" : ""
+            }`}
+            aria-label="Shopping bag"
+            className={`size-full transition-colors ease-in-out duration-270 ${
+              isBlinking ? "!text-[#ffbb99] bg-foreground/5" : ""
+            }`}
+            onMouseEnter={() => {
+              setActionMenuOpened(true);
+              setActionHovered("cart");
+            }}
+            onClick={() => {
+              setCartPanelOpen(true);
+              setIsSidebarOpen(true);
+              closeActionMenu();
+            }}
+          />
+        </div>
         <Button
           flavour="icon"
           icon="heart"
@@ -175,6 +211,7 @@ export default function Navbar({
         setActionMenuOpened={setActionMenuOpened}
         actionHovered={actionHovered}
         setActionHovered={setActionHovered}
+        closeActionMenu={closeActionMenu}
         setCartPanelOpen={setCartPanelOpen}
         setIsSidebarOpen={setIsSidebarOpen}
       />

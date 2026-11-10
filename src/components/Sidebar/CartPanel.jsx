@@ -15,7 +15,14 @@ export default function CartPanel() {
           </div>
         ))}
       </div>
-      <div className="flex flex-col divide-card-foreground/10 divide-y-2">
+      <div className="flex flex-col divide-card-foreground/10 divide-y-2 min-h-[calc(100vh-190px)]">
+        {cart.length === 0 ? (
+          <div className="w-full h-full flex flex-col justify-center">
+            <h1 className="text-center text-2xl text-primary/40">
+              Cart is Empty.
+            </h1>
+          </div>
+        ) : null}
         {cart.map((cartItem) => (
           <div
             key={cartItem.cartItemId}
@@ -40,23 +47,9 @@ export default function CartPanel() {
               </div>
             </div>
             <div className="p-2 self-center">${cartItem.price}</div>
-            <div className="h-8 w-24 self-center flex mx-2 bg-card-foreground/40 rounded-lg overflow-hidden">
+            <div className="group mx-2 flex h-9 w-28 self-center items-center justify-center gap-[0.25em] overflow-hidden rounded-full border-[0.16em] border-current/40 bg-foreground px-2 py-1 text-sm font-medium text-card/75 transition-all duration-300 ease-in-out hover:border-secondary hover:bg-secondary hover:text-foreground/60">
               <button
-                className="w-8 h-8 leading-0 text-[40px] flex flex-col justify-center items-center hover:bg-card-foreground/20"
-                onClick={() =>
-                  updateCartItemQuantity(
-                    cartItem.cartItemId,
-                    cartItem.amount + 1,
-                  )
-                }
-              >
-                <Plus size={20} />
-              </button>
-              <div className="w-8 h-8 text-lg flex flex-col justify-center items-center">
-                <h1 className="mb-[1px] p-2">{cartItem.amount}</h1>
-              </div>
-              <button
-                className="w-8 h-8 leading-0 text-[40px] flex flex-col justify-center items-center hover:bg-card-foreground/20"
+                className="flex w-1/3 flex-col items-center justify-center leading-0 text-[28px]"
                 onClick={() =>
                   updateCartItemQuantity(
                     cartItem.cartItemId,
@@ -64,7 +57,21 @@ export default function CartPanel() {
                   )
                 }
               >
-                <Minus size={20} />
+                <Minus size={16} />
+              </button>
+              <div className="flex w-1/3 flex-col items-center justify-center text-base">
+                <h1 className="m-0 p-0 leading-5">{cartItem.amount}</h1>
+              </div>
+              <button
+                className="flex w-1/3 flex-col items-center justify-center leading-0 text-[28px]"
+                onClick={() =>
+                  updateCartItemQuantity(
+                    cartItem.cartItemId,
+                    cartItem.amount + 1,
+                  )
+                }
+              >
+                <Plus size={16} />
               </button>
             </div>
 

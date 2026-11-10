@@ -8,6 +8,7 @@ export default function ActionsMenu({
   setActionMenuOpened,
   actionHovered,
   setActionHovered,
+  closeActionMenu,
 
   setIsSidebarOpen,
   setCartPanelOpen,
@@ -26,6 +27,7 @@ export default function ActionsMenu({
           <CartMenu
             setCartPanelOpen={setCartPanelOpen}
             setIsSidebarOpen={setIsSidebarOpen}
+            closeActionMenu={closeActionMenu}
           />
         ) : null}
         {actionHovered === "favorites" ? <FavoritesMenu /> : null}

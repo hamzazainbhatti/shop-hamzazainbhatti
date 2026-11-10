@@ -1,7 +1,11 @@
 import Button from "@/components/ui/Button";
 import { useCart } from "@/context/CartContext";
 
-export default function CartMenu({ setCartPanelOpen, setIsSidebarOpen }) {
+export default function CartMenu({
+  setCartPanelOpen,
+  setIsSidebarOpen,
+  closeActionMenu,
+}) {
   const { cart } = useCart();
   return (
     <div className="flex flex-row p-4 gap-4 items-center justify-between">
@@ -17,6 +21,7 @@ export default function CartMenu({ setCartPanelOpen, setIsSidebarOpen }) {
         onClick={() => {
           setCartPanelOpen(true);
           setIsSidebarOpen(true);
+          closeActionMenu();
         }}
       >
         Open Cart
