@@ -1,21 +1,14 @@
 import { useCart } from "@/context/CartContext";
-import { Minus, Plus } from "lucide-react";
+import { Minus, Plus, Trash2 } from "lucide-react";
 
 export default function CartPanel() {
   const { cart, totalCost } = useCart();
-  const { updateCartItemQuantity } = useCart();
+  const { updateCartItemQuantity, deleteCartItem } = useCart();
   const columns = ["", "Product", "Price", "Amount", "Total"];
-
-  function handleQuantityChange(cartItem, newQuantity) {
-    if (newQuantity < 1) {
-      return; // Prevent quantity from going below 1
-    }
-    updateCartItemQuantity(cartItem.cartItemId, newQuantity);
-  }
 
   return (
     <div className="flex flex-col">
-      <div className="grid grid-cols-[96px_1fr_100px_170px_100px] mx-4 bg-card-foreground/10 rounded-lg">
+      <div className="grid grid-cols-[96px_1fr_100px_170px_100px_50px] mx-4 bg-card-foreground/10 rounded-lg">
         {columns.map((column) => (
           <div className="text-start p-2" key={`columnHeader${column}`}>
             {column}
@@ -26,7 +19,7 @@ export default function CartPanel() {
         {cart.map((cartItem) => (
           <div
             key={cartItem.cartItemId}
-            className="grid grid-cols-[96px_1fr_100px_170px_100px] mx-4 py-4"
+            className="grid grid-cols-[96px_1fr_100px_170px_100px_50px] mx-4 py-4"
           >
             <div className="h-25 w-25 overflow-hidden flex-shrink-0">
               <img
@@ -51,8 +44,8 @@ export default function CartPanel() {
               <button
                 className="w-8 h-8 leading-0 text-[40px] flex flex-col justify-center items-center hover:bg-card-foreground/20"
                 onClick={() =>
-                  handleQuantityChange(
-                    cartItem,
+                  updateCartItemQuantity(
+                    cartItem.cartItemId,
                     cartItem.amount + 1,
                   )
                 }
@@ -65,8 +58,8 @@ export default function CartPanel() {
               <button
                 className="w-8 h-8 leading-0 text-[40px] flex flex-col justify-center items-center hover:bg-card-foreground/20"
                 onClick={() =>
-                  handleQuantityChange(
-                    cartItem,
+                  updateCartItemQuantity(
+                    cartItem.cartItemId,
                     cartItem.amount - 1,
                   )
                 }
@@ -76,10 +69,18 @@ export default function CartPanel() {
             </div>
 
             <div className="p-2 self-center">${cartItem.totalPrice}</div>
+            <div className="p-2 self-center">
+              <button
+                className="text hover:text-red-700"
+                onClick={() => deleteCartItem(cartItem.cartItemId)}
+              >
+                <Trash2 size={20} />
+              </button>
+            </div>
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-[96px_1fr_100px_170px_100px] mx-4 bg-card-foreground/10 rounded-lg">
+      <div className="grid grid-cols-[96px_1fr_100px_170px_100px_50px] mx-4 bg-card-foreground/10 rounded-lg">
         <div className="p-2"></div>
         <div className="p-2"></div>
         <div className="p-2"></div>

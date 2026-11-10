@@ -26,7 +26,16 @@ export function CartProvider({ children }) {
   const [totalCost, setTotalCost] = useState(0);
   const [cartLocalStorage, setCartLocalStorage] = useState(getItem("cart")||[]);
 
+  function deleteCartItem(cartItemId) {
+    setCartLocalStorage((previousItems) => {
+      return previousItems.filter((item) => getCartItemId(item) !== cartItemId);
+    });
+  }
+  
   function updateCartItemQuantity(cartItemId, newQuantity) {
+    if (newQuantity < 1) {
+      return; // Prevent quantity from going below 1
+    }
     setCartLocalStorage((previousItems) => {
       const updatedItems = previousItems.map((item) => {
         const itemId = getCartItemId(item);
@@ -101,7 +110,7 @@ export function CartProvider({ children }) {
   }, [cartLocalStorage]);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, totalCost, updateCartItemQuantity }}>
+    <CartContext.Provider value={{ cart, addToCart, totalCost, updateCartItemQuantity, deleteCartItem }}>
       {children}
     </CartContext.Provider>
   );
