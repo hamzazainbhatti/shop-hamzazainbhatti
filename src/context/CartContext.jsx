@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import tees from "@/data/tees";
+import { getItem, setItem } from "@/utils/localStorage";
 
 const CartContext = createContext(null);
 //  prettier-ignore
@@ -19,7 +20,7 @@ export function CartProvider({ children }) {
   
   const [cart, setCart] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
-  const [cartLocalStorage, setCartLocalStorage] = useState([]);
+  const [cartLocalStorage, setCartLocalStorage] = useState(getItem("cart")||[]);
 
   function addToCart(teeID, amount, finish, size, gender) {
     setCartLocalStorage((previousItems) => {
@@ -44,7 +45,7 @@ export function CartProvider({ children }) {
   }
 
   useEffect(() => {
-    setCart([]); //  Clear Cart everytime the cartLocalStorage prop changes to avoid duplicates. TODO: On LocalStorage, get from localstorage
+    setCart([]); //  Clear Cart everytime the cartLocalStorage prop changes to avoid duplicates.
     setTotalCost(0); // Total Cost starts with 0
     cartLocalStorage.forEach((cartItem) => {
       tees.forEach((tee) => {
@@ -69,6 +70,7 @@ export function CartProvider({ children }) {
         }
       });
     });
+    setItem("cart", cartLocalStorage)
   }, [cartLocalStorage]);
 
   return (

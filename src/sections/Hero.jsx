@@ -23,7 +23,7 @@
  *    The ORIGIONAL ratio w:h of screen is preserved.
  *
  *
- *  TODO: Fix header always dark mode When Runway Height is equal to screen width, Check what flow-root does
+ *
  *
  */
 
