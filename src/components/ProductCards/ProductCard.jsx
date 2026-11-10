@@ -1,11 +1,17 @@
 import Button from "@/components/ui/Button";
+import { useNavigate } from "react-router";
+import { useCart } from "@/context/CartContext";
 
 export default function ProductCard({ tee }) {
+  const navigate = useNavigate();
+  const { addToCart } = useCart(); // TODO: Handle Add to cart
+
   return (
-    <div key={tee.id} className="relative group/card bg-card rounded-lg">
+    <div className="relative group/card bg-card rounded-lg">
       <div className="relative aspect-square overflow-hidden rounded-xl">
         <img
-          className="absolute left-0 top-0 h-full w-[200%] max-w-none group-has-[button:hover]/card:drop-shadow-xl/30 group-has-[button:hover]/card:-top-1.5 hover:-left-full transition-all duration-300"
+          className="absolute left-0 top-0 h-full w-[200%] max-w-none group-has-[button:hover]/card:drop-shadow-xl/30 group-has-[button:hover]/card:-top-1.5 hover:-left-full transition-all duration-300 cursor-pointer"
+          onClick={() => navigate(`/shirt/${tee.id}`)}
           src={tee.image}
           alt={tee.name}
         ></img>

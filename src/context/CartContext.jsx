@@ -2,21 +2,46 @@ import { createContext, useContext, useState, useEffect } from "react";
 import tees from "@/data/tees";
 
 const CartContext = createContext(null);
-
 //  prettier-ignore
-const cartLocalStorage = [
-  { teeID: "black", amount: 1, finish: "matte", size: "M" , gender:"men" },
-  { teeID: "dark-gray", amount: 1, finish: "textured", size: "XL" , gender:"unisex"},
-  { teeID: "maroon", amount: 4, finish: "smooth", size: "L" , gender:"women"},
-  { teeID: "dark-ash", amount: 1, finish: "smooth", size: "S" , gender:"women"},
-  { teeID: "white", amount: 1, finish: "matte", size: "M" , gender:"men"},
-  { teeID: "olive", amount: 1, finish: "matte", size: "L" , gender:"men"},
-  { teeID: "mint", amount: 1, finish: "shiny", size: "L" , gender:"men"},
-];
+/**
+ * Sample cart items:
+ *
+ * { teeID: "black", amount: 1, finish: "matte", size: "M", gender: "men" },
+ * { teeID: "dark-gray", amount: 1, finish: "textured", size: "XL", gender: "unisex" },
+ * { teeID: "maroon", amount: 4, finish: "smooth", size: "L", gender: "women" },
+ * { teeID: "dark-ash", amount: 1, finish: "smooth", size: "S", gender: "women" },
+ * { teeID: "white", amount: 1, finish: "matte", size: "M", gender: "men" },
+ * { teeID: "olive", amount: 1, finish: "matte", size: "L", gender: "men" },
+ * { teeID: "mint", amount: 1, finish: "shiny", size: "L", gender: "men" },
+ */
 
 export function CartProvider({ children }) {
+  
   const [cart, setCart] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
+  const [cartLocalStorage, setCartLocalStorage] = useState([]);
+
+  function addToCart(teeID, amount, finish, size, gender) {
+    setCartLocalStorage((previousItems) => {
+      const existingItemIndex = previousItems.findIndex(
+        (item) =>
+          item.teeID === teeID &&
+          item.size === size &&
+          item.finish === finish &&
+          item.gender === gender,
+      );
+
+      if (existingItemIndex !== -1) {
+        return previousItems.map((item, index) =>
+          index === existingItemIndex
+            ? { ...item, amount: item.amount + amount }
+            : item,
+        );
+      }
+
+      return [...previousItems, { teeID, amount, finish, size, gender }];
+    });
+  }
 
   useEffect(() => {
     setCart([]); //  Clear Cart everytime the cartLocalStorage prop changes to avoid duplicates. TODO: On LocalStorage, get from localstorage
@@ -47,7 +72,7 @@ export function CartProvider({ children }) {
   }, [cartLocalStorage]);
 
   return (
-    <CartContext.Provider value={{ cart, setCart, totalCost }}>
+    <CartContext.Provider value={{ cart, addToCart, totalCost }}>
       {children}
     </CartContext.Provider>
   );

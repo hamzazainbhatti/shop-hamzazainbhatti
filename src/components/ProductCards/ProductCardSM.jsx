@@ -1,8 +1,10 @@
 import tees from "@/data/tees";
 import { twMerge } from "cn";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router";
 
 export default function ProductCardSM({ className, inputTeeId }) {
+  const navigate = useNavigate();
   const foundTee = tees.find((tee) => tee.id === inputTeeId) || null;
   return (
     <div
@@ -10,6 +12,7 @@ export default function ProductCardSM({ className, inputTeeId }) {
         "bg-white/75 text-card/90 rounded-2xl w-110 h-40 flex flex-row shrink-0 group hover:bg-white transition-color/85 duration-500 ease-in-out cursor-pointer",
         className,
       )}
+      onClick={() => navigate(`/shirt/${foundTee.slug}`)}
     >
       {foundTee != null ? (
         <>

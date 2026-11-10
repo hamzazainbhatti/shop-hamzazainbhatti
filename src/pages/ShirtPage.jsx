@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Navigate } from "react-router";
 import tees from "@/data/tees";
+import { useCart } from "@/context/CartContext";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 
@@ -10,6 +11,7 @@ export default function ShirtPage() {
   const [ready, setReady] = useState(false);
   const teeID = useParams().teeID;
   const tee = tees.find((tee) => tee.id === teeID) || null;
+  const { addToCart } = useCart();
 
   useEffect(() => {
     if (selections[0] !== "" && selections[1] !== "" && selections[2] !== "") {
@@ -32,7 +34,15 @@ export default function ShirtPage() {
               <Button
                 className="w-full text-card/75 hover:bg-secondary hover:text-foreground/60 hover:border-secondary transition-all duration-300 ease-in-out border-current/40"
                 disabled={!ready}
-                onClick={() => console.log("CLICKED")}
+                onClick={() =>
+                  addToCart(
+                    teeID,
+                    1,
+                    selections[0],
+                    selections[1],
+                    selections[2],
+                  )
+                }
               >
                 Add to Cart
               </Button>
@@ -45,17 +55,6 @@ export default function ShirtPage() {
           </h1>
           <div className="flex flex-col gap-4">
             <Dropdown
-              label="Select your Size."
-              options={tee.sizes} // ["Small", "Medium", "Large", "Extra Large"]
-              onSelect={(selection) =>
-                setSelections((previous) =>
-                  previous.map((value, index) =>
-                    index === 0 ? selection : value,
-                  ),
-                )
-              }
-            />
-            <Dropdown
               label="Select your fabric finish."
               options={tee.tags.filter(
                 (finish) =>
@@ -67,8 +66,17 @@ export default function ShirtPage() {
               onSelect={(selection) =>
                 setSelections((previous) =>
                   previous.map((value, index) =>
-                    index === 1 ? selection : value,
+                    index === 0 ? selection : value,
                   ),
+                )
+              }
+            />
+            <Dropdown
+              label="Select your Size."
+              options={tee.sizes} // ["Small", "Medium", "Large", "Extra Large"]
+              onSelect={(selection) =>
+                setSelections((size) =>
+                  size.map((value, index) => (index === 1 ? selection : value)),
                 )
               }
             />
@@ -79,9 +87,9 @@ export default function ShirtPage() {
                   ? ["unisex", "men", "women"]
                   : null) ||
                 tee.tags.filter(
-                  (finish) =>
-                    (finish === "men" ? finish : null) ||
-                    (finish === "women" ? finish : null),
+                  (gender) =>
+                    (gender === "men" ? gender : null) ||
+                    (gender === "women" ? gender : null),
                 )
               } // ["Men", "Women", "Unisex"]
               onSelect={(selection) =>

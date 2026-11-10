@@ -14,9 +14,9 @@ export default function WomenPage() {
                 className={`w-full font-hero-text text-[min(8vw,64px)] lg:text-[clamp(3rem,5vw,4.5rem)] leading-[1.08] text-foreground ${animateBlurText(contentVisible)} text-center lg:text-left`}
               >
                 Experience the <br />
-                <spam className="font-cursive italic"> Comfort </spam> &nbsp;of
-                <spam className="font-extralight italic"> Minimal</spam> <br />
-                and <spam className="font-semibold tracking-[3px]">Soft </spam>
+                <span className="font-cursive italic"> Comfort </span> &nbsp;of
+                <span className="font-extralight italic"> Minimal</span> <br />
+                and <span className="font-semibold tracking-[3px]">Soft </span>
                 Textures.
               </h1>
               <Button
