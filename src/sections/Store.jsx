@@ -2,33 +2,38 @@
   /* 
 
       Give props as: 
-      <Store flagsFilters={[ "flag01" , "flag02" , .... ]} tagFilters={[ "tag01" , "tag02" , .... ]} />
+      <Store flagsFilters={[ "flag01" , "flag02" , .... ]} tagFilters={[ "tag01" , "tag02" , .... ]} colorFamilyFilters={[ "colorFamily01" , "colorFamily02" , .... ]} />
       <Store tagFilters={[ "tag01" , "tag02" , .... ]} />
       <Store flagsFilters={[ "flag01" , "flag02" , .... ]} />
+      <Store colorFamilyFilters={[ "colorFamily01" , "colorFamily02" , .... ]} />
       <Store />
       
     - If NO props, it will default to ALL "tees".
+
     - If ONLY "tags", it will show ONLY SPECIFIC "tees" with selected Tags. (ONLY Tags will be filtered).
     - IF ONLY "flags", it will show ONLY SPECIFIC "tees" with selected Flags. (ONLY Flags will be filtered).
+    - IF ONLY "colorFamilyFilters", it will show ONLY SPECIFIC "tees" with selected Color Families. (ONLY Color Families will be filtered).
+
     - If BOTH "tags" and "flags", it will show "tees" that contains specified Tags AND Flags. (Shows "tees" where BOTH given Flag(s) AND Tag(s) are found.)
+    - If BOTH "tags" and "colorFamilyFilters", it will show "tees" that contains specified Tags AND Color Families. (Shows "tees" where BOTH given Tag(s) AND Color Family(s) are found.)
+    - If BOTH "flags" and "colorFamilyFilters", it will show "tees" that contains specified Flags AND Color Families. (Shows "tees" where BOTH given Flag(s) AND Color Family(s) are found.)
+
+    - If "tags", "flags" and "colorFamilyFilters", it will show "tees" that contains specified Tags, Flags AND Color Families. (Shows "tees" where all given Tag(s), Flag(s) AND Color Family(s) are found.)
+
     - DO NOT GIVE EMPTY STRINGS IN ARRAYS AS flagFilters OR tagFilters. OR 100 YEAR BAD LUCK.
 
     - You may use the following valid flags and tags for filtering:
       - validFlags: ["inStock", "featured", "new"]
       - validTags: ["men", "women", "dark", "colored", "matte", "light", "earthy", "shiny", "bright", "smooth", "textured"]
+      - validColorFamilies: ["neutral", "blue", "green", "red", "purple", "brown"]
 
-    - Incorrect spelling of flags or tags will result in an error message in the console and no items will be displayed.
+    - Incorrect spelling of flags or tags will result in an error message in the console and no items will be displayed. PLUS UI will show "FOUND TYPO IN FILTERS" message.
 
   */
 }
 
 import ProductCard from "@/components/ProductCards/ProductCard";
-import {
-  tees,
-  validColorFamilies,
-  validFlags,
-  validTags,
-} from "@/data/tees"; // TODO: add attribution
+import { tees, validColorFamilies, validFlags, validTags } from "@/data/tees"; // TODO: add attribution
 import { getColorFamily, isNewProduct } from "@/utils/productMetadata";
 
 export default function Store({
@@ -64,7 +69,8 @@ export default function Store({
             &&
           (tagsFilters === undefined || (
             tagsFilters.every( (tagsFilter) => tee.tags.includes(tagsFilter) )
-          )) &&
+          )) 
+            &&
           (colorFamilyFilters === undefined || (
             colorFamilyFilters.every((colorFamilyFilter) =>
               getColorFamily(tee) === colorFamilyFilter

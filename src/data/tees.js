@@ -3,6 +3,25 @@ export const attribution = {
   url: "https://www.vecteezy.com/free-png/t-shirt-mockup",
 };
 
+export const promotionImageAttributions = {
+  "man-black-00.jpg": { source: "Pixels" },
+  "man-dark-ash-00.jpg": { source: "BURST SHOPIFY" },
+  "man-dark-gray-00.jpg": { source: "Pixels" },
+  "man-forest-00.jpg": { source: "BURST SHOPIFY" },
+  "man-olive-00.jpg": { source: "Pixels" },
+  "man-olive-01.jpg": { source: "Pixels" },
+  "man-purple-00.jpg": { source: "Pixels" },
+  "man-purple-01.jpg": { source: "Pixels" },
+  "man-violet-00.jpg": { source: "Pixels" },
+  "man-violet-01.jpg": { source: "Pixels" },
+  "women-dark-gray-00.jpg": { source: "BURST SHOPIFY" },
+  "women-emerald-00.jpg": { source: "BURST SHOPIFY" },
+  "women-emerald-01.jpg": { source: "BURST SHOPIFY" },
+  "women-navy-00.jpg": { source: "BURST SHOPIFY" },
+  "women-olive-00.jpg": { source: "Pixels" },
+  "women-red-00.jpg": { source: "Pixels" },
+};
+
 export const validFlags = ["inStock", "featured", "new"];
 export const validColorFamilies = [
   "neutral",
