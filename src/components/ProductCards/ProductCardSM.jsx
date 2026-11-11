@@ -9,31 +9,35 @@ export default function ProductCardSM({ className, inputTeeId }) {
   return (
     <div
       className={twMerge(
-        "bg-white/75 text-card/90 rounded-2xl w-110 h-40 flex flex-row shrink-0 group hover:bg-white transition-color/85 duration-500 ease-in-out cursor-pointer",
+        "group flex h-[clamp(7rem,12vw,10rem)] w-[min(90vw,27.5rem)] shrink-0 cursor-pointer flex-row rounded-2xl bg-white/75 text-card/90 transition-colors duration-500 ease-in-out hover:bg-white sm:w-[min(70vw,27.5rem)]",
         className,
       )}
       onClick={() => navigate(`/shirt/${foundTee.slug}`)}
     >
       {foundTee != null ? (
         <>
-          <div className="h-40 w-40 overflow-hidden flex-shrink-0">
+          <div className="aspect-square h-full w-[clamp(7rem,12vw,10rem)] shrink-0 overflow-hidden">
             <img
               src={foundTee.image}
               alt={foundTee.name}
               className="size-full object-cover object-left p-1"
             />
           </div>
-          <div className="flex flex-col gap-2 justify-between flex-grow-1 py-4">
-            <h1 className="text-lg font-medium">
+          <div className="flex min-w-0 flex-1 flex-col justify-between gap-1 px-[clamp(0.75rem,1.5vw,1rem)] py-[clamp(0.75rem,1.5vw,1rem)]">
+            <h1 className="truncate text-[clamp(0.875rem,1.5vw,1.125rem)] font-medium">
               {foundTee.name.toUpperCase()}{" "}
             </h1>
-            <h1 className="text-md">{foundTee.description} </h1>
-            <h1 className="text-lg">${foundTee.price.toFixed(2)} </h1>
+            <h1 className="line-clamp-2 text-[clamp(0.75rem,1.25vw,1rem)]">
+              {foundTee.description}
+            </h1>
+            <h1 className="text-[clamp(0.875rem,1.5vw,1.125rem)]">
+              ${foundTee.price.toFixed(2)}
+            </h1>
           </div>
           <ArrowRight
-            size={40}
+            size={32}
             strokeWidth={1.7}
-            className="text-card opacity-80 flex-shrink-0 mx-4 my-auto transition-transform duration-500 ease-in-out group-hover:translate-x-[10px]"
+            className="my-auto mx-[clamp(0.75rem,1.5vw,1rem)] size-[clamp(1.5rem,3vw,2.5rem)] shrink-0 text-card opacity-80 transition-transform duration-500 ease-in-out group-hover:translate-x-[10px]"
           />
         </>
       ) : (

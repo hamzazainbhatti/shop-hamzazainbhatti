@@ -11,10 +11,9 @@ export default function Navbar({
 }) {
   const { cart } = useCart();
   const currentPage = useLocation().pathname;
-  const bgContrast =
-    currentPage === "/men" || currentPage.startsWith("/shirt/")
-      ? "light"
-      : "dark";
+  const isLightPage =
+    currentPage === "/men" || currentPage.startsWith("/shirt/");
+  const bgContrast = isLightPage ? "light" : "dark";
   const [scrolled, setScrolled] = useState(() => window.scrollY > 0);
   const [actionMenuOpened, setActionMenuOpened] = useState(false);
   const [actionHovered, setActionHovered] = useState(null);
@@ -88,7 +87,7 @@ export default function Navbar({
     <header
       className={`fixed inset-x-0 top-0 z-10 flex items-center justify-between gap-[clamp(0.25rem,1.2vw,1rem)] bg-header px-[clamp(1rem,4vw,3rem)] py-[clamp(0.75rem,2vw,1.5rem)] font-sans text-[clamp(0.6875rem,0.9vw,0.875rem)] font-medium ${bgContrast === "light" ? "text-[#545454] backdrop-blur-md" : "text-header-foreground"} transition-colors duration-300 ease-linear ${
         scrolled ? "dark backdrop-blur-md" : ""
-      }`}
+      } ${isLightPage && !scrolled ? "!backdrop-blur-none" : ""}`}
     >
       <Button
         flavour="icon"

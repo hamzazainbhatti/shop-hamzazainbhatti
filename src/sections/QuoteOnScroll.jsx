@@ -58,7 +58,7 @@ function animateText(content, index) {
 
 export default function QuoteOnScroll({
   children,
-  className = "min-h-screen px-[20vh] pt-20 font-serif font-light leading-tight text-7xl flex items-center justify-center bg-secondary",
+  className = "min-h-[calc(70vh)] px-[20vh] py-20 font-serif font-light leading-tight text-7xl flex items-center justify-center bg-secondary bg-linear-65 from-secondary to-white/2 text-center",
 }) {
   const quoteLength = Array.from(getText(children)).length;
   const index = { value: 0 };

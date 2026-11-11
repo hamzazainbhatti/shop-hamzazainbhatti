@@ -79,7 +79,7 @@ html {
 -------------START----------- */
 
 :root {
-  --quote-from: rgb(from var(--color-secondary-foreground) r g b / 50%);
+  --quote-from: rgb(from var(--color-secondary-foreground) r g b / 20%);
   --quote-to: var(--color-secondary-foreground);
 }
 
@@ -95,7 +95,7 @@ html {
 .quote-scroll {
   color: var(--quote-from);
   view-timeline: --quote block;
-  view-timeline-inset: 0px 80%;
+  view-timeline-inset: 20% 40%;
 }
 
 @supports (animation-timeline: view()) {
