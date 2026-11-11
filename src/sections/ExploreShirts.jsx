@@ -1,9 +1,13 @@
 import Button from "@/components/ui/Button";
+import { twMerge } from "cn";
 
-export default function ExploreShirts({ bg, link }) {
+export default function ExploreShirts({ bg, link, className }) {
   return (
     <section
-      className="relative m-[0_8px_8px_8px] h-[400px] bg-cover bg-center p-6 rounded-lg"
+      className={twMerge(
+        "relative m-[0_8px_8px_8px] h-[400px] bg-cover bg-center p-6 rounded-lg",
+        className,
+      )}
       style={{ backgroundImage: `url('${bg}')` }}
     >
       <Button

@@ -34,7 +34,7 @@ export default function WomenPage() {
                     : "-translate-y-2 opacity-0"
                 }`}
               >
-                EXPLORE
+                SHOP WOMEN'S
               </Button>
             </div>
             <ProductCardSM
