@@ -2,10 +2,7 @@ import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { useToast } from "@/context/ToastContext";
 import Button from "@/components/ui/Button";
-import {
-  getFinishOptions,
-  getShapeOptions,
-} from "@/utils/productMetadata";
+import { getFinishOptions, getShapeOptions } from "@/utils/productMetadata";
 
 const addToCartButtonClassName =
   "border-card-foreground/80 bg-card-foreground text-card hover:bg-card hover:text-card-foreground";
@@ -111,10 +108,10 @@ export default function AddToCartDropdown({ tee }) {
         weight="normal"
         labelAlign="start"
         onClick={() => setIsOpen((previous) => !previous)}
-        className={`group/button flex w-40 flex-row justify-between pr-1.5 pl-2.75 transition-colors duration-200 ease-in-out ${
+        className={`group/button flex w-40 flex-row justify-between pr-2 pl-4 transition-colors duration-200 ease-in-out ${
           isOpen ? addToCartButtonHoverClassName : addToCartButtonClassName + ""
         }`}
-        labelClassName="relative grid h-[1.25em] overflow-hidden mb-[0.2em]"
+        labelClassName="relative grid h-[1.25em] overflow-hidden mb-[0.3em]"
       >
         <span
           className={`col-start-1 row-start-1 transition-transform duration-300 ${

@@ -1,7 +1,13 @@
-import Store from "@/sections/Store";
 import Hero from "@/sections/Hero";
 import Button from "@/components/ui/Button";
 import ProductCardSM from "@/components/ProductCards/ProductCardSM";
+import ProductsGrid from "@/components/ProductsGrid";
+import ImageProductCard from "@/components/ProductCards/ImageProductCard";
+import ProductCard from "@/components/ProductCards/ProductCard";
+
+import tees from "@/data/tees";
+
+const getTee = (id) => tees.find((tee) => tee.id === id);
 
 export default function WomenPage() {
   return (
@@ -38,7 +44,32 @@ export default function WomenPage() {
         )}
       </Hero>
       <section className="relative z-0 flex flex-col bg-background">
-        <Store tagsFilters={["women"]} />
+        <ProductsGrid>
+          <ImageProductCard
+            image="/assets/tees-promotion-bgs/women-emerald-00.jpg"
+            inputTeeId="green-2955"
+          />
+          <ProductCard tee={getTee("black")} />
+          <ProductCard tee={getTee("maroon")} />
+          <ImageProductCard
+            image="/assets/tees-promotion-bgs/women-dark-gray-00.jpg"
+            inputTeeId="dark-gray"
+          />
+          <ProductCard tee={getTee("white")} />
+          <ProductCard tee={getTee("olive")} />
+          <ImageProductCard
+            image="/assets/tees-promotion-bgs/women-navy-00.jpg"
+            inputTeeId="navy"
+          />
+          <ProductCard tee={getTee("dark-ash")} />
+          <ProductCard tee={getTee("magenta")} />
+          <ImageProductCard
+            image="/assets/tees-promotion-bgs/women-red-00.jpg"
+            inputTeeId="red"
+          />
+          <ProductCard tee={getTee("dark-ash")} />
+          <ProductCard tee={getTee("magenta")} />
+        </ProductsGrid>
       </section>
     </main>
   );
