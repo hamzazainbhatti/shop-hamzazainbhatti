@@ -157,8 +157,8 @@ export default function Navbar({
               isBlinking ? "!stroke-[2.4]" : ""
             }`}
             aria-label="Shopping bag"
-            className={`size-full transition-colors ease-in-out duration-270 ${
-              isBlinking ? "!text-[#ffbb99] bg-foreground/5" : ""
+            className={`size-full transition-all ease-in-out duration-270 ${
+              isBlinking ? "!text-[#ffbb99] scale-[1.2]" : ""
             }`}
             onMouseEnter={() => {
               setActionMenuOpened(true);

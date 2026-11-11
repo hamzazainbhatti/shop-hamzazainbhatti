@@ -1,10 +1,8 @@
-import Button from "@/components/ui/Button";
 import { useNavigate } from "react-router";
-import { useCart } from "@/context/CartContext";
+import AddToCartDropdown from "@/components/ProductCards/AddToCartDropdown";
 
 export default function ProductCard({ tee }) {
   const navigate = useNavigate();
-  const { addToCart } = useCart(); // TODO: Handle Add to cart
 
   return (
     <div className="relative group/card bg-card rounded-lg">
@@ -23,16 +21,7 @@ export default function ProductCard({ tee }) {
       <p className="absolute bottom-0 left-0 m-4 text-lg italic font-normal  text-card-foreground-supporting">
         ${tee.price.toFixed(0)}
       </p>
-      <Button
-        flavour="outline"
-        icon="plus"
-        iconClassName="transition-transform duration-400 group-hover/button:rotate-90"
-        weight="normal"
-        labelAlign="start"
-        className="absolute group/button flex flex-row w-40 bottom-0 right-0 m-4 pr-1.5 pl-2.75 justify-between text-card-foreground-supporting/90 border-card-foreground-supporting/80 hover:bg-card-foreground-supporting/90 hover:text-[#f7f6f3] hover:border-card-foreground-supporting/90 transition-colors duration-200 ease-in-out"
-      >
-        Add to Cart
-      </Button>
+      <AddToCartDropdown tee={tee} />
     </div>
   );
 }
