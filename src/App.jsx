@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import { CartProvider } from "./context/CartContext";
 import { ToastProvider } from "./context/ToastContext";
 import Toast from "./components/ui/Toast";
+import AnnouncementBar from "./components/AnnouncementBar";
 
 export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -15,6 +16,7 @@ export default function App() {
   return (
     <CartProvider>
       <ToastProvider>
+        <AnnouncementBar />
         <Navbar
           setIsSidebarOpen={setIsSidebarOpen}
           setNavPanelOpen={setNavPanelOpen}

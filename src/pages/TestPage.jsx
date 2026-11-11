@@ -7,7 +7,7 @@ const getTee = (id) => tees.find((tee) => tee.id === id);
 
 export default function TestPage() {
   return (
-    <main>
+    <main className="bg-black">
       <div className="mt-10">
         <ProductsGrid>
           <ImageProductCard
