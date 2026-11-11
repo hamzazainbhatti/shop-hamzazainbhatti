@@ -12,7 +12,9 @@ export default function Navbar({
   const { cart } = useCart();
   const currentPage = useLocation().pathname;
   const isLightPage =
-    currentPage === "/men" || currentPage.startsWith("/shirt/");
+    currentPage === "/men" ||
+    currentPage === "/shirts" ||
+    currentPage.startsWith("/shirt/");
   const bgContrast = isLightPage ? "light" : "dark";
   const [scrolled, setScrolled] = useState(() => window.scrollY > 0);
   const [actionMenuOpened, setActionMenuOpened] = useState(false);
