@@ -1,28 +1,21 @@
 import { Children, cloneElement, useState } from "react";
 import Button from "@/components/ui/Button";
-import { validColorFamilies, validFlags, validTags } from "@/data/tees";
+import {
+  getValidFilters,
+  storeFilterOptions,
+} from "@/utils/storeFilters";
 
 const filterGroups = [
-  { key: "flagsFilters", label: "Flags", options: validFlags },
-  { key: "tagsFilters", label: "Tags", options: validTags },
+  { key: "flagsFilters", label: "Flags" },
+  { key: "tagsFilters", label: "Tags" },
   {
     key: "colorFamilyFilters",
     label: "Color family",
-    options: validColorFamilies,
   },
 ];
 
-const validFilters = {
-  flagsFilters: validFlags,
-  tagsFilters: validTags,
-  colorFamilyFilters: validColorFamilies,
-};
-
 function getInitialFilters(filters, key) {
-  const validOptions = validFilters[key];
-  return Array.isArray(filters)
-    ? filters.filter((filter) => validOptions.includes(filter))
-    : [];
+  return getValidFilters(filters, key);
 }
 
 function formatFilterName(filter) {
@@ -36,24 +29,35 @@ export default function StoreController({
   flagsFilters,
   tagsFilters,
   colorFamilyFilters,
+  onFiltersChange,
 }) {
   const child = Children.only(children);
-  const [currentFilters, setCurrentFilters] = useState({
+  const initialFilters = {
     flagsFilters: getInitialFilters(flagsFilters, "flagsFilters"),
     tagsFilters: getInitialFilters(tagsFilters, "tagsFilters"),
     colorFamilyFilters: getInitialFilters(
       colorFamilyFilters,
       "colorFamilyFilters",
     ),
-  });
+  };
+  const [localFilters, setLocalFilters] = useState(initialFilters);
+  const currentFilters = onFiltersChange ? initialFilters : localFilters;
 
   function toggleFilter(filterKey, filter) {
-    setCurrentFilters((previous) => ({
-      ...previous,
-      [filterKey]: previous[filterKey].includes(filter)
-        ? previous[filterKey].filter((activeFilter) => activeFilter !== filter)
-        : [...previous[filterKey], filter],
-    }));
+    const nextFilters = {
+      ...currentFilters,
+      [filterKey]: currentFilters[filterKey].includes(filter)
+        ? currentFilters[filterKey].filter(
+            (activeFilter) => activeFilter !== filter,
+          )
+        : [...currentFilters[filterKey], filter],
+    };
+
+    if (onFiltersChange) {
+      onFiltersChange(nextFilters);
+    } else {
+      setLocalFilters(nextFilters);
+    }
   }
 
   return (
@@ -62,13 +66,13 @@ export default function StoreController({
         <div>
           <h2 className="text-2xl font-semibold">Filter products</h2>
         </div>
-        {filterGroups.map(({ key, label, options }) => (
+        {filterGroups.map(({ key, label }) => (
           <fieldset key={key} className="flex flex-col gap-2">
             <legend className="text-sm font-semibold text-card-foreground/70 ml-1 mb-1">
               {label}
             </legend>
             <div className="flex flex-wrap gap-2">
-              {options.map((filter) => {
+              {storeFilterOptions[key].map((filter) => {
                 const isSelected = currentFilters[key].includes(filter);
 
                 return (

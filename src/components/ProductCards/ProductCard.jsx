@@ -18,7 +18,7 @@ export default function ProductCard({ tee }) {
       </div>
       <div className="relative flex flex-col px-4 pt-0 pb-16 gap-2 text-card-foreground-supporting">
         <h3 className="font-semibold">{tee.name}</h3>
-        <p>{tee.description}</p>
+        <p className="line-clamp-2">{tee.description}</p>
       </div>
       <p className="absolute bottom-0 left-0 m-4 text-lg italic font-normal  text-card-foreground-supporting">
         ${tee.price.toFixed(0)}

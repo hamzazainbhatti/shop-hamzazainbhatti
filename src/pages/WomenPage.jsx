@@ -4,6 +4,7 @@ import ProductCardSM from "@/components/ProductCards/ProductCardSM";
 import ProductsGrid from "@/components/ProductsGrid";
 import ImageProductCard from "@/components/ProductCards/ImageProductCard";
 import ProductCard from "@/components/ProductCards/ProductCard";
+import ExploreShirts from "@/sections/ExploreShirts";
 
 import tees from "@/data/tees";
 
@@ -70,6 +71,10 @@ export default function WomenPage() {
           <ProductCard tee={getTee("dark-ash")} />
           <ProductCard tee={getTee("magenta")} />
         </ProductsGrid>
+        <ExploreShirts
+          bg="/assets/tees-promotion-bgs/women-olive-00.jpg"
+          link="/shirts?tag=women"
+        />
       </section>
     </main>
   );
