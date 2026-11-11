@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import { Navigate } from "react-router";
 import tees from "@/data/tees";
@@ -7,10 +7,7 @@ import { useToast } from "@/context/ToastContext";
 import Button from "@/components/ui/Button";
 import { Minus, Plus } from "lucide-react";
 import ProductBadges from "@/components/ProductBadges";
-import {
-  getFinishOptions,
-  getShapeOptions,
-} from "@/utils/productMetadata";
+import { getFinishOptions, getShapeOptions } from "@/utils/productMetadata";
 
 function OptionTags({ label, options, selection, onSelect }) {
   return (
@@ -48,8 +45,28 @@ export default function ShirtPage() {
   const ready = selections.every(Boolean);
   const [quantity, setQuantity] = useState(1);
 
+  // inside ShirtPage, with the other hooks
+  const panelRef = useRef(null);
+
+  useEffect(() => {
+    const onWheel = (e) => {
+      const el = panelRef.current;
+      if (!el || el.contains(e.target)) return; // native scrolling handles it
+
+      const atTop = el.scrollTop <= 0;
+      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
+
+      if ((e.deltaY < 0 && !atTop) || (e.deltaY > 0 && !atBottom)) {
+        e.preventDefault();
+        el.scrollTop += e.deltaY;
+      }
+    };
+    window.addEventListener("wheel", onWheel, { passive: false });
+    return () => window.removeEventListener("wheel", onWheel);
+  }, []);
+
   return tee ? (
-    <div className="grid grid-cols-3 p-4 pt-[96px] h-[600px] min-h-screen w-[100vh-32px] gap-4">
+    <div className="grid grid-cols-3 p-4 pt-[96px] h-[600px] min-h-screen gap-4">
       <div className="flex flex-col justify-center bg-primary/20 text-primary/20 rounded-lg">
         <div className="w-full aspect-square overflow-hidden flex-shrink-0">
           <img
@@ -68,12 +85,17 @@ export default function ShirtPage() {
           />
         </div>
       </div>
-      <div className="grid grid-rows-[1fr_auto_auto]">
+      <div
+        className="grid grid-rows-[30px_1fr_auto_auto] scrollbar-none h-full min-h-0 overflow-y-auto"
+        ref={panelRef}
+      >
+        <div className="w-full flex justify-end">
+          <ProductBadges tee={tee} />
+        </div>
         <div className="flex flex-col gap-2 p-4 justify-between">
-          <div>
-            <ProductBadges tee={tee} />
+          <div className="flex flex-col gap-2">
             <h1 className="text-4xl text-primary/80">{tee.name}</h1>
-            <h1 className="text-2xl text-primary/60">{tee.description}</h1>
+            <h1 className="text-xl text-primary/60">{tee.description}</h1>
           </div>
           <div className="flex flex-col text-2xl justify-right text-right text-primary/50">
             ${tee.price.toFixed(2)}

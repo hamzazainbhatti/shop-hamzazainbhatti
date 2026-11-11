@@ -6,7 +6,7 @@ export default function ProductCard({ tee }) {
   const navigate = useNavigate();
 
   return (
-    <div className="relative group/card bg-card rounded-lg">
+    <div className="relative group/card bg-card-foreground/6 hover:bg-card-foreground/4 transition-colors duration-200 rounded-lg">
       <ProductBadges tee={tee} className="px-4 pt-3" />
       <div className="relative aspect-square overflow-hidden rounded-xl">
         <img

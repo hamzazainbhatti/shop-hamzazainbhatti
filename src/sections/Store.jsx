@@ -33,6 +33,7 @@
 }
 
 import ProductCard from "@/components/ProductCards/ProductCard";
+import ProductsGrid from "@/components/ProductsGrid";
 import { tees, validColorFamilies, validFlags, validTags } from "@/data/tees"; // TODO: add attribution
 import { getColorFamily, isNewProduct } from "@/utils/productMetadata";
 
@@ -89,11 +90,11 @@ export default function Store({
   return (
     <>
       {!noItemsFound ? (
-        <div className="grid gap-2 m-2 py-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <ProductsGrid>
           {filteredTees.map((tee) => (
             <ProductCard key={tee.id} tee={tee} />
           ))}
-        </div>
+        </ProductsGrid>
       ) : null}
 
       {noItemsFound ? (
