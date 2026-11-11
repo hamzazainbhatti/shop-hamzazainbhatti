@@ -2,6 +2,10 @@ import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { useToast } from "@/context/ToastContext";
 import Button from "@/components/ui/Button";
+import {
+  getFinishOptions,
+  getShapeOptions,
+} from "@/utils/productMetadata";
 
 const addToCartButtonClassName =
   "border-card-foreground/80 bg-card-foreground text-card hover:bg-card hover:text-card-foreground";
@@ -41,13 +45,8 @@ export default function AddToCartDropdown({ tee }) {
   const { addToCart } = useCart();
   const { showToast } = useToast();
   const ready = selections.every(Boolean);
-  const finishOptions = tee.tags.filter((tag) =>
-    ["textured", "matte", "smooth", "shiny"].includes(tag),
-  );
-  const shapeOptions =
-    tee.tags.includes("men") && tee.tags.includes("women")
-      ? ["unisex", "men", "women"]
-      : tee.tags.filter((tag) => ["men", "women"].includes(tag));
+  const finishOptions = getFinishOptions(tee);
+  const shapeOptions = getShapeOptions(tee);
 
   function selectOption(index, selection) {
     setSelections((previous) =>
@@ -59,6 +58,11 @@ export default function AddToCartDropdown({ tee }) {
 
   function handleAddToCart() {
     if (!ready) return;
+
+    if (!tee.inStock) {
+      showToast("This item is out of stock", "error");
+      return;
+    }
 
     addToCart(tee.id, 1, selections[0], selections[1], selections[2]);
     showToast("Item added to cart", "success");

@@ -102,7 +102,10 @@ export function CartProvider({ children }) {
               totalPrice: tee.price * cartItem.amount,
             },
           ]);
-          setTotalCost((prevTotal) => prevTotal + tee.price * cartItem.amount);
+          setTotalCost(
+            (prevTotal) =>
+              prevTotal + tee.price * cartItem.amount,
+          );
         }
       });
     });

@@ -6,6 +6,11 @@ import { useCart } from "@/context/CartContext";
 import { useToast } from "@/context/ToastContext";
 import Button from "@/components/ui/Button";
 import { Minus, Plus } from "lucide-react";
+import ProductBadges from "@/components/ProductBadges";
+import {
+  getFinishOptions,
+  getShapeOptions,
+} from "@/utils/productMetadata";
 
 function OptionTags({ label, options, selection, onSelect }) {
   return (
@@ -66,6 +71,7 @@ export default function ShirtPage() {
       <div className="grid grid-rows-[1fr_auto_auto]">
         <div className="flex flex-col gap-2 p-4 justify-between">
           <div>
+            <ProductBadges tee={tee} />
             <h1 className="text-4xl text-primary/80">{tee.name}</h1>
             <h1 className="text-2xl text-primary/60">{tee.description}</h1>
           </div>
@@ -77,9 +83,7 @@ export default function ShirtPage() {
           <div className="flex flex-col gap-4">
             <OptionTags
               label="Fabric finish"
-              options={tee.tags.filter((tag) =>
-                ["textured", "matte", "smooth", "shiny"].includes(tag),
-              )}
+              options={getFinishOptions(tee)}
               selection={selections[0]}
               onSelect={(selection) =>
                 setSelections((previous) => [
@@ -103,11 +107,7 @@ export default function ShirtPage() {
             />
             <OptionTags
               label="T-shirt shape"
-              options={
-                tee.tags.includes("men") && tee.tags.includes("women")
-                  ? ["unisex", "men", "women"]
-                  : tee.tags.filter((tag) => ["men", "women"].includes(tag))
-              }
+              options={getShapeOptions(tee)}
               selection={selections[2]}
               onSelect={(selection) =>
                 setSelections((previous) => [
@@ -126,6 +126,11 @@ export default function ShirtPage() {
                 className="w-full text-card/75 hover:bg-secondary hover:text-foreground/60 hover:border-secondary transition-all duration-300 ease-in-out border-current/40"
                 disabled={!ready}
                 onClick={() => {
+                  if (!tee.inStock) {
+                    showToast("This item is out of stock", "error");
+                    return;
+                  }
+
                   addToCart(
                     teeID,
                     quantity,

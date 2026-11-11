@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router";
 import AddToCartDropdown from "@/components/ProductCards/AddToCartDropdown";
+import ProductBadges from "@/components/ProductBadges";
 
 export default function ProductCard({ tee }) {
   const navigate = useNavigate();
 
   return (
     <div className="relative group/card bg-card rounded-lg">
+      <ProductBadges tee={tee} className="px-4 pt-3" />
       <div className="relative aspect-square overflow-hidden rounded-xl">
         <img
           className="absolute left-0 top-0 h-full w-[200%] max-w-none group-has-[button:hover]/card:drop-shadow-xl/30 group-has-[button:hover]/card:-top-1.5 hover:-left-full transition-all duration-300 cursor-pointer"

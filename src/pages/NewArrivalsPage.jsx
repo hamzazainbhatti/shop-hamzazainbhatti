@@ -38,8 +38,7 @@ export default function NewArrivalsPage() {
         )}
       </Hero>
       <section className="relative z-0 flex flex-col bg-background">
-        <Store tagsFilters={["women"]} />
-        {/* TODO: Add Tee prop for time added to render newly added items, useit instead of "women"*/}
+        <Store flagsFilters={["new"]} />
       </section>
     </main>
   );

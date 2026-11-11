@@ -14,7 +14,7 @@
     - DO NOT GIVE EMPTY STRINGS IN ARRAYS AS flagFilters OR tagFilters. OR 100 YEAR BAD LUCK.
 
     - You may use the following valid flags and tags for filtering:
-      - validFlags: ["inStock", "featured"]
+      - validFlags: ["inStock", "featured", "new"]
       - validTags: ["men", "women", "dark", "colored", "matte", "light", "earthy", "shiny", "bright", "smooth", "textured"]
 
     - Incorrect spelling of flags or tags will result in an error message in the console and no items will be displayed.
@@ -23,9 +23,19 @@
 }
 
 import ProductCard from "@/components/ProductCards/ProductCard";
-import { tees, validFlags, validTags } from "@/data/tees"; // TODO: add attribution
+import {
+  tees,
+  validColorFamilies,
+  validFlags,
+  validTags,
+} from "@/data/tees"; // TODO: add attribution
+import { getColorFamily, isNewProduct } from "@/utils/productMetadata";
 
-export default function Store({ flagsFilters, tagsFilters }) {
+export default function Store({
+  flagsFilters,
+  tagsFilters,
+  colorFamilyFilters,
+}) {
   //  prettier-ignore
   const isTagsAndFlagsValid = 
     (
@@ -34,6 +44,9 @@ export default function Store({ flagsFilters, tagsFilters }) {
       ))) &&
       (tagsFilters === undefined || tagsFilters.every((tagFilter)=>(
         validTags.includes(tagFilter)
+      ))) &&
+      (colorFamilyFilters === undefined || colorFamilyFilters.every((colorFamilyFilter)=>(
+        validColorFamilies.includes(colorFamilyFilter)
       )))
     )
 
@@ -44,12 +57,18 @@ export default function Store({ flagsFilters, tagsFilters }) {
       tees.filter(
         (tee) => (
           (flagsFilters  === undefined || (
-            (flagsFilters.includes("inStock") ? (tee.inStock ? true : false) : true) && 
-            (flagsFilters.includes("featured") ? (tee.featured ? true : false) : true) 
+            (flagsFilters.includes("inStock") ? tee.inStock : true) &&
+            (flagsFilters.includes("featured") ? tee.featured : true) &&
+            (flagsFilters.includes("new") ? isNewProduct(tee) : true)
           )) 
             &&
           (tagsFilters === undefined || (
             tagsFilters.every( (tagsFilter) => tee.tags.includes(tagsFilter) )
+          )) &&
+          (colorFamilyFilters === undefined || (
+            colorFamilyFilters.every((colorFamilyFilter) =>
+              getColorFamily(tee) === colorFamilyFilter
+            )
           ))
         )
       )
@@ -85,6 +104,11 @@ export default function Store({ flagsFilters, tagsFilters }) {
             {tagsFilters?.map((tagFilter) => (
               <span className="border rounded-2xl px-2 pb-1 border-[#ffa2006e] text-[#ffa200]">
                 {tagFilter}
+              </span>
+            ))}
+            {colorFamilyFilters?.map((colorFamilyFilter) => (
+              <span className="border rounded-2xl px-2 pb-1 border-[#ffa2006e] text-[#ffa200]">
+                {colorFamilyFilter}
               </span>
             ))}
           </div>
