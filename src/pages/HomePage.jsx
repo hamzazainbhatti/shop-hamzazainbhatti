@@ -144,7 +144,7 @@ export default function HeroPage() {
             </ProductsGrid>
             <ExploreShirts
               bg="/assets/tees-promotion-bgs/man-violet-00.jpg"
-              link="/shirts?flag=featured&flag=new"
+              link="/shirt/black"
               buttonLabel="Explore Trending"
               className="m-0"
             />
