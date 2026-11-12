@@ -7,7 +7,7 @@ export default function NavPanel({ closeSidebar }) {
     { name: "New Arrival", href: "/new-arrival" },
     { name: "Men", href: "/men" },
     { name: "Women", href: "/women" },
-    { name: "Shop", href: "/shop" },
+    { name: "Shirts", href: "/shirts" },
   ];
   return (
     <div className="flex flex-col h-screen text-8xl gap-5 divide-y-2 px-5 pt-5 divide-foreground/20 divide-solid">

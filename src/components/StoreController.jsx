@@ -1,9 +1,6 @@
 import { Children, cloneElement, useState } from "react";
 import Button from "@/components/ui/Button";
-import {
-  getValidFilters,
-  storeFilterOptions,
-} from "@/utils/storeFilters";
+import { getValidFilters, storeFilterOptions } from "@/utils/storeFilters";
 
 const filterGroups = [
   { key: "flagsFilters", label: "Flags" },
@@ -43,14 +40,19 @@ export default function StoreController({
   const [localFilters, setLocalFilters] = useState(initialFilters);
   const currentFilters = onFiltersChange ? initialFilters : localFilters;
 
-  function toggleFilter(filterKey, filter) {
+  function toggleFilter(filterKey, filter, singleSelect = false) {
+    const isSelected = currentFilters[filterKey].includes(filter);
     const nextFilters = {
       ...currentFilters,
-      [filterKey]: currentFilters[filterKey].includes(filter)
-        ? currentFilters[filterKey].filter(
-            (activeFilter) => activeFilter !== filter,
-          )
-        : [...currentFilters[filterKey], filter],
+      [filterKey]: singleSelect
+        ? isSelected
+          ? []
+          : [filter]
+        : isSelected
+          ? currentFilters[filterKey].filter(
+              (activeFilter) => activeFilter !== filter,
+            )
+          : [...currentFilters[filterKey], filter],
     };
 
     if (onFiltersChange) {
@@ -62,7 +64,7 @@ export default function StoreController({
 
   return (
     <div className="flex flex-col lg:flex-row-reverse lg:items-start mt-21">
-      <aside className="m-2 flex shrink-0 flex-col gap-6 rounded-lg border border-card-foreground/10 bg-card-foreground/5 p-4 text-card-foreground lg:sticky lg:top-22 lg:w-72 ">
+      <aside className="m-[0_8px] lg:m-[8px_8px_8px_0] flex shrink-0 flex-col gap-6 rounded-lg bg-card-foreground/5 p-4 text-card-foreground lg:sticky lg:top-22 lg:w-72 ">
         <div>
           <h2 className="text-2xl font-semibold">Filter products</h2>
         </div>
@@ -82,7 +84,9 @@ export default function StoreController({
                     flavour="outline"
                     size="sm"
                     aria-pressed={isSelected}
-                    onClick={() => toggleFilter(key, filter)}
+                    onClick={() =>
+                      toggleFilter(key, filter, key === "colorFamilyFilters")
+                    }
                     className={
                       isSelected
                         ? "border-card-foreground bg-card-foreground text-card"
