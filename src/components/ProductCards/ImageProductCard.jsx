@@ -6,6 +6,7 @@ export default function ImageProductCard({
   inputTeeId,
   className,
   productCardClassName,
+  children,
 }) {
   return (
     <div
@@ -15,6 +16,7 @@ export default function ImageProductCard({
       )}
       style={{ backgroundImage: `url(${image})` }}
     >
+      {children}
       <ProductCardSM
         inputTeeId={inputTeeId}
         className={twMerge(

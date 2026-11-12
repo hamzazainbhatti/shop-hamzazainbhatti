@@ -106,6 +106,18 @@ export default function HeroPage() {
               className="m-0"
             />
           </SectionWrapper>
+          <ImageProductCard
+            image="/assets/social-media-posts/woman-black-00.jpg"
+            inputTeeId="black"
+            className="flex flex-col justify-between gap-4 font-sans font-light mx-2 min-h-200 p-20"
+          >
+            <h1 className="text-primary-foreground text-8xl w-[calc(100%-40vw)]">
+              Looking for the blackest Blacks in your shirt ?
+            </h1>
+            <p className="text-primary-foreground/80 w-[calc(100%-40vw) text-xl font-medium">
+              We provide colors for our shirts that will outlive you!
+            </p>
+          </ImageProductCard>
           <SectionWrapper
             heading="TRENDING"
             subheading="See what most of us are buying."
