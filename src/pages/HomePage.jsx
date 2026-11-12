@@ -115,29 +115,23 @@ export default function HeroPage() {
                 image="/assets/tees-promotion-bgs/women-emerald-00.jpg"
                 inputTeeId="green-2955"
               />
-              <ProductCard tee={getTee("black")} />
+              <ProductCard tee={getTee("mint")} />
               <ProductCard tee={getTee("maroon")} />
               <ImageProductCard
-                image="/assets/tees-promotion-bgs/women-dark-gray-00.jpg"
-                inputTeeId="dark-gray"
+                image="/assets/tees-promotion-bgs/man-olive-01.jpg"
+                inputTeeId="olive"
               />
               <ProductCard tee={getTee("white")} />
-              <ProductCard tee={getTee("olive")} />
+              <ProductCard tee={getTee("dark-gray")} />
               <ImageProductCard
-                image="/assets/tees-promotion-bgs/women-navy-00.jpg"
-                inputTeeId="navy"
+                image="/assets/tees-promotion-bgs/man-black-00.jpg"
+                inputTeeId="black"
               />
               <ProductCard tee={getTee("dark-ash")} />
-              <ProductCard tee={getTee("magenta")} />
-              <ImageProductCard
-                image="/assets/tees-promotion-bgs/women-red-00.jpg"
-                inputTeeId="red"
-              />
-              <ProductCard tee={getTee("dark-ash")} />
-              <ProductCard tee={getTee("magenta")} />
+              <ProductCard tee={getTee("purple-2944")} />
             </ProductsGrid>
             <ExploreShirts
-              bg="/assets/tees-promotion-bgs/man-dark-gray-00.jpg"
+              bg="/assets/tees-promotion-bgs/man-violet-00.jpg"
               link="/shirts?flag=featured&flag=new"
               buttonLabel="Explore Trending"
               className="m-0"
