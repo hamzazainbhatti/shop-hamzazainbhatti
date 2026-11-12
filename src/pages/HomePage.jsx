@@ -1,9 +1,17 @@
-import Store from "@/sections/Store";
 import Hero from "@/sections/Hero";
 import Button from "@/components/ui/Button";
 import ProductCardSM from "@/components/ProductCards/ProductCardSM";
+import ProductsGrid from "@/components/ProductsGrid";
+import ImageProductCard from "@/components/ProductCards/ImageProductCard";
+import ProductCard from "@/components/ProductCards/ProductCard";
 import QuoteOnScroll from "@/sections/QuoteOnScroll";
 import ContactForm from "@/sections/ContactForm";
+import ExploreShirts from "@/sections/ExploreShirts";
+import SectionWrapper from "@/sections/SectionWrapper";
+
+import tees from "@/data/tees";
+
+const getTee = (id) => tees.find((tee) => tee.id === id);
 
 export default function HeroPage() {
   return (
@@ -54,7 +62,88 @@ export default function HeroPage() {
             </footer>
           </>
         </QuoteOnScroll>
-        <Store />
+        <div className="mt-2 flex flex-col gap-2">
+          <section className="mx-2 flex gap-2">
+            <ExploreShirts
+              bg="/assets/men-bg-00.jpg"
+              link="/men"
+              buttonLabel="FOR HIM"
+              buttonClassName="bottom-6 right-auto left-1/2 top-auto w-auto -translate-x-1/2 translate-y-0 rounded-lg border-secondary bg-secondary text-foreground hover:border-background hover:bg-foreground hover:text-background"
+              buttonSize="lg"
+              className="m-0 min-h-[140vh] flex-1"
+            />
+            <ExploreShirts
+              bg="/assets/women-bg-00.jpg"
+              link="/women"
+              buttonLabel="FOR HER"
+              buttonClassName="bottom-6 right-auto left-1/2 top-auto w-auto -translate-x-1/2 translate-y-0 rounded-lg border-secondary bg-secondary text-foreground hover:border-background hover:bg-foreground hover:text-background"
+              buttonSize="lg"
+              className="m-0 min-h-[140vh] flex-1"
+            />
+          </section>
+          <SectionWrapper
+            heading="NEW ARRIVALS"
+            subheading="Be the first one to discover our latest arrivals."
+          >
+            <ProductsGrid className="m-0">
+              <ImageProductCard
+                image="/assets/tees-promotion-bgs/man-black-00.jpg"
+                inputTeeId="black"
+              />
+              <ImageProductCard
+                image="/assets/tees-promotion-bgs/man-violet-00.jpg"
+                inputTeeId="purple-2944"
+              />
+              <ProductCard tee={getTee("red")} />
+              <ProductCard tee={getTee("black")} />
+              <ProductCard tee={getTee("maroon")} />
+              <ProductCard tee={getTee("green-2955")} />
+            </ProductsGrid>
+            <ExploreShirts
+              bg="/assets/tees-promotion-bgs/man-dark-gray-00.jpg"
+              link="/new-arrivals"
+              buttonLabel="Explore New Arrivals"
+              className="m-0"
+            />
+          </SectionWrapper>
+          <SectionWrapper
+            heading="TRENDING"
+            subheading="See what most of us are buying."
+          >
+            <ProductsGrid className="m-0">
+              <ImageProductCard
+                image="/assets/tees-promotion-bgs/women-emerald-00.jpg"
+                inputTeeId="green-2955"
+              />
+              <ProductCard tee={getTee("black")} />
+              <ProductCard tee={getTee("maroon")} />
+              <ImageProductCard
+                image="/assets/tees-promotion-bgs/women-dark-gray-00.jpg"
+                inputTeeId="dark-gray"
+              />
+              <ProductCard tee={getTee("white")} />
+              <ProductCard tee={getTee("olive")} />
+              <ImageProductCard
+                image="/assets/tees-promotion-bgs/women-navy-00.jpg"
+                inputTeeId="navy"
+              />
+              <ProductCard tee={getTee("dark-ash")} />
+              <ProductCard tee={getTee("magenta")} />
+              <ImageProductCard
+                image="/assets/tees-promotion-bgs/women-red-00.jpg"
+                inputTeeId="red"
+              />
+              <ProductCard tee={getTee("dark-ash")} />
+              <ProductCard tee={getTee("magenta")} />
+            </ProductsGrid>
+            <ExploreShirts
+              bg="/assets/tees-promotion-bgs/man-dark-gray-00.jpg"
+              link="/shirts?flag=featured&flag=new"
+              buttonLabel="Explore Trending"
+              className="m-0"
+            />
+          </SectionWrapper>
+        </div>
         <ContactForm />
       </section>
     </main>

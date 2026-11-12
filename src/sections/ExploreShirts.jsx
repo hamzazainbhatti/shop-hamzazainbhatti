@@ -1,7 +1,14 @@
 import Button from "@/components/ui/Button";
 import { twMerge } from "cn";
 
-export default function ExploreShirts({ bg, link, className }) {
+export default function ExploreShirts({
+  bg,
+  link,
+  className,
+  buttonClassName,
+  buttonLabel = "See More",
+  buttonSize,
+}) {
   return (
     <section
       className={twMerge(
@@ -12,9 +19,13 @@ export default function ExploreShirts({ bg, link, className }) {
     >
       <Button
         to={link}
-        className="absolute bottom-6 right-6 border-current/40 text-card/75 transition-all duration-300 ease-in-out hover:border-secondary hover:bg-secondary hover:text-foreground w-[min(50rem,calc(100vw-75px))]"
+        size={buttonSize}
+        className={twMerge(
+          "absolute bottom-6 right-6 w-[min(50rem,calc(100vw-75px))] border-current/40 text-card/75 transition-all duration-300 ease-in-out hover:border-secondary hover:bg-secondary hover:text-foreground",
+          buttonClassName,
+        )}
       >
-        See More
+        {buttonLabel}
       </Button>
     </section>
   );

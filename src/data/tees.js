@@ -22,6 +22,26 @@ export const promotionImageAttributions = {
   "women-red-00.jpg": { source: "Pixels" },
 };
 
+export const socialMediaImageAttributions = {
+  "monochrome-person-sitting-down-in-black-shirt-and-blue-jeans.jpg": {
+    source: "BURST SHOPIFY",
+  },
+  "ornate-stone-building.jpg": { source: "BURST SHOPIFY" },
+  "person-in-white-sits-looking-at-their-baby.jpg": {
+    source: "BURST SHOPIFY",
+  },
+  "tattooed-man-takes-a-stroll-in-summer.jpg": {
+    source: "BURST SHOPIFY",
+  },
+  "two-people-in-white-shirts-looking-at-the-camera.jpg": {
+    source: "BURST SHOPIFY",
+  },
+  "woman-in-blue-holds-a-flower-and-looks-at-the-camera.jpg": {
+    source: "BURST SHOPIFY",
+  },
+  "woman-lying-in-yellow-flowers.jpg": { source: "BURST SHOPIFY" },
+};
+
 export const validFlags = ["inStock", "featured", "new"];
 export const validColorFamilies = [
   "neutral",
