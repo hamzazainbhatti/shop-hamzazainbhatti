@@ -8,8 +8,9 @@ import QuoteOnScroll from "@/sections/QuoteOnScroll";
 import ContactForm from "@/sections/ContactForm";
 import ExploreShirts from "@/sections/ExploreShirts";
 import SectionWrapper from "@/sections/SectionWrapper";
+import SocialMediaGallery from "@/sections/SocialMediaGallery";
 
-import tees from "@/data/tees";
+import { tees } from "@/data/tees";
 
 const getTee = (id) => tees.find((tee) => tee.id === id);
 
@@ -40,10 +41,10 @@ export default function HeroPage() {
                 EXPLORE
               </Button>
             </div>
-            <div className="absolute top-[clamp(5rem,12vh,8rem)] right-[max(2vw,1rem)] flex flex-col gap-[clamp(0.5rem,1vw,1rem)] lg:top-auto lg:bottom-[max(2vw,1rem)]">
-              <ProductCardSM inputTeeId="black" />
-              <ProductCardSM inputTeeId="navy" />
-            </div>
+            <ProductCardSM
+              inputTeeId="navy"
+              className="w-[min(50vw,350px)] aspect-3/1 absolute top-[calc(2.9vw+100px)] right-[max(2vw,1rem)] lg:top-auto lg:bottom-[max(2vw,1rem)] lg:w-100 "
+            />
           </div>
         )}
       </Hero>
@@ -149,6 +150,14 @@ export default function HeroPage() {
               className="m-0"
             />
           </SectionWrapper>
+          <div className="flex flex-col items-center bg-card-foreground/95 px-2 pb-4 my-2 mx-2 rounded-lg">
+            <h1 className="py-20 text-5xl text-center text-card font-extralight">
+              We'd love to see your adventures with our beloved Tees. <br />{" "}
+              Share your experiances with us on social media using <br />
+              <br /> #ShirtByCollarbone
+            </h1>
+            <SocialMediaGallery className="mx-2" />
+          </div>
         </div>
         <ContactForm />
       </section>

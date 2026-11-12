@@ -1,12 +1,18 @@
 import { useNavigate } from "react-router";
 import AddToCartDropdown from "@/components/ProductCards/AddToCartDropdown";
 import ProductBadges from "@/components/ProductBadges";
+import { twMerge } from "cn";
 
-export default function ProductCard({ tee }) {
+export default function ProductCard({ tee, className }) {
   const navigate = useNavigate();
 
   return (
-    <div className="relative group/card bg-card-foreground/6 hover:bg-card-foreground/4 transition-colors duration-200 rounded-lg">
+    <div
+      className={twMerge(
+        "relative group/card bg-card-foreground/6 rounded-lg hover:bg-card-foreground/4 transition-colors duration-200",
+        className,
+      )}
+    >
       <ProductBadges tee={tee} className="px-4 pt-3" />
       <div className="relative aspect-square overflow-hidden rounded-xl">
         <img
