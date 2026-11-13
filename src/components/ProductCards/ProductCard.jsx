@@ -28,13 +28,15 @@ export default function ProductCard({ tee, className }) {
       </div>
       <div className="flex flex-col justify-between p-2 [--card-w:100cqw]">
         <div className="text-card-foreground-supporting mb-4">
-          <h3 className="font-semibold">{tee.name}</h3>
+          <h3 className="font-semibold line-clamp-1">{tee.name}</h3>
           <p className="line-clamp-2">{tee.description}</p>
         </div>
-        <div className="flex items-center justify-between flex-col md:flex-col gap-2 lg:gap-6 lg:flex-row ">
-          <p className="text-2xl md:text-base font-normal text-card-foreground/80">
-            ${tee.price.toFixed(2)}
-          </p>
+        <div className="flex items-center justify-between flex-col gap-2 lg:gap-6 lg:flex-row ">
+          <div className="max-lg:w-[100%] max-lg:pl-2 flex flex-row justify-start">
+            <p className="text-[max(1.5vw,1.2rem)] font-normal text-card-foreground/80 ">
+              ${tee.price.toFixed(2)}
+            </p>
+          </div>
           <AddToCartDropdown tee={tee} />
         </div>
       </div>

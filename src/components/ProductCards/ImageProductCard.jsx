@@ -11,7 +11,7 @@ export default function ImageProductCard({
   return (
     <div
       className={twMerge(
-        "relative col-span-2 row-span-2 h-full min-h-[min(100vw,25rem)] min-w-[min(100vw,25rem)] overflow-hidden rounded-lg bg-cover bg-center",
+        "relative col-span-2 row-span-2 h-full min-h-[min(100vw,25rem)] overflow-hidden rounded-lg bg-cover bg-center",
         className,
       )}
       style={{ backgroundImage: `url(${image})` }}
@@ -19,7 +19,10 @@ export default function ImageProductCard({
       {children}
       <ProductCardSM
         inputTeeId={inputTeeId}
-        className={twMerge("absolute bottom-4 right-4 ", productCardClassName)}
+        className={twMerge(
+          "absolute bottom-4 right-4 w-[50%]",
+          productCardClassName,
+        )}
         contentClassName="text-card-foreground"
       />
     </div>

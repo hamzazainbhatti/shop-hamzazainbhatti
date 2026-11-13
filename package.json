@@ -17,7 +17,7 @@
     "url": "git+https://github.com/hamzazainbhatti/shop-hamzazainbhatti.git"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

@@ -104,18 +104,20 @@ export default function HeroPage() {
               bg="/assets/tees-promotion-bgs/man-dark-gray-00.jpg"
               link="/new-arrivals"
               buttonLabel="Explore New Arrivals"
-              className="m-0"
+              className="m-0 bg-[position:center_calc(60%)]"
             />
           </SectionWrapper>
           <ImageProductCard
             image="/assets/social-media-posts/woman-black-00.jpg"
             inputTeeId="black"
-            className="flex flex-col justify-between gap-4 font-sans font-light mx-2 min-h-200 p-20"
+            className="flex flex-col justify-between gap-4 font-sans font-light mx-2 min-h-200 p-10 md:p-30 pt-30"
+            productCardClassName="w-[clamp(200px,40%,400px)] top-4 right-4"
           >
-            <h1 className="text-primary-foreground text-8xl w-[calc(100%-40vw)]">
-              Looking for the blackest Blacks in your shirt ?
+            <h1 className="text-primary-foreground text-center md:text-start text-[clamp(20px,12.5vw,2000px)] leading-[clamp(20px,12vw,2000px)] md:text-[7vw] md:leading-[7.2vw]">
+              Looking for <br /> the blackest <br /> Blacks in <br /> your shirt
+              ?
             </h1>
-            <p className="text-primary-foreground/80 w-[calc(100%-40vw) text-xl font-medium">
+            <p className="text-primary-foreground/80 text-[max(2vw,16px)] font-medium">
               We provide colors for our shirts that will outlive you!
             </p>
           </ImageProductCard>
@@ -151,9 +153,9 @@ export default function HeroPage() {
             />
           </SectionWrapper>
           <div className="flex flex-col gap-2 items-center bg-card-foreground/95 px-2 pb-4 my-2 mx-2 rounded-lg">
-            <h1 className="py-20 text-5xl text-center text-card font-extralight">
-              We'd love to see your adventures with our beloved Tees. <br />{" "}
-              Share your experiances with us on social media using <br />
+            <h1 className="p-[10vw] text-[3.1vw] text-center text-card font-extralight">
+              We'd love to see your adventures with our beloved Tees. Share your
+              experiances with us on social media using <br />
               <br /> #ShirtByCollarbone
             </h1>
             <SocialMediaGallery className="mx-2" />

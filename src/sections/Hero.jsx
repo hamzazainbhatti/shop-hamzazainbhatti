@@ -17,7 +17,8 @@
  *
  *  --------------- [ IMAGE SIZE CALCULATION /  CHANGE IMAGE SIZE ] IF scrollEffect is enabled in Hero Section ---------------
  *
- *  - Hero Image needs to scroll and for Hero Image to scroll, We wil put Hero's width as 100vw.
+ *  - When scrollEffect is enabled, the Hero image follows the width of its in-flow runway.
+ *    Avoid viewport width units here because they can include a classic scrollbar gutter.
  *  - Now There may be some leftover Image height that goes under Screen that could be scrolled.
  *  - Image height will NOT be set automaticly. We will set it. And we will set it in a way where
  *    The ORIGIONAL ratio w:h of screen is preserved.
@@ -40,20 +41,18 @@ const animateBlurText = (visible) =>
  *
  *  We need to find Changed Height. to change the Image Height in such a way that it's Image Width stays equal to Screen Width.
  *
- *    Origional Width / Origional Height = Changed Width / Changed Height           24W:12H = 2w:1H
- *    Origional Width / Origional Height = window.innerWidth / Changed Height.      As we are keeping Image's Width According to screen width to compute Image's height Without changing the ratio of W:H
- *    Origional Height / Origional Width = Changed Height / window.innerWidth       Flipping both sides.
- *    window.innerWidth x (Origional Height / Origional Width) = Changed Height     Multiplying both sides by "window.innerWidth".
- *    Changed Height = window.innerWidth x (Origional Height / Origional Width)
+ *    Origional Width / Origional Height = Changed Width / Changed Height
+ *    Origional Width / Origional Height = runwayWidth / Changed Height
+ *    Changed Height = runwayWidth x (Origional Height / Origional Width)
  *
  *  "Changed Height" can be set as Image's Height
- *  "window.innerWidth" can be set as  Image's Width
+ *  "runwayWidth" can be set as Image's Width
  *
  *  IF IMAGE HEIGHT < WHAT SCREEN CAN PROVIDE US: Use screen Height instead.
  */
-function getImageHeight(image, viewportWidth, viewportHeight) {
+function getImageHeight(image, runwayWidth, viewportHeight) {
   return Math.max(
-    (viewportWidth * image.naturalHeight) / image.naturalWidth,
+    (runwayWidth * image.naturalHeight) / image.naturalWidth,
     viewportHeight,
   );
 }
@@ -66,6 +65,9 @@ export default function Hero({
   const [backgroundReady, setBackgroundReady] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
   const [runwayHeight, setRunwayHeight] = useState(0);
+  const [heroWidth, setHeroWidth] = useState(
+    () => document.documentElement.clientWidth,
+  );
   const runwayWrapperRef = useRef(null);
   const heroWrapperRef = useRef(null);
   const imageRef = useRef(null);
@@ -76,8 +78,13 @@ export default function Hero({
       await image.decode();
 
       if (scrollEffect) {
+        const runwayWidth =
+          runwayWrapperRef.current?.getBoundingClientRect().width ??
+          document.documentElement.clientWidth;
+
+        setHeroWidth(runwayWidth);
         setRunwayHeight(
-          getImageHeight(image, window.innerWidth, window.innerHeight),
+          getImageHeight(image, runwayWidth, window.innerHeight),
         );
       }
 
@@ -108,14 +115,17 @@ export default function Hero({
       frameId = null;
 
       /**
-       *  SET the Image Width as the Viewport Width.
+       *  SET the Image Width as the Runway Width.
        *  CALCULATE the Image Height based on what the Image Width was calculated as. (Preserving the Image's Aspect Ratio)
        *
        *  */
       const viewportHeight = window.innerHeight;
-      const viewportWidth = window.innerWidth;
+      const runwayWidth = runwayWrapper.getBoundingClientRect().width;
 
-      const imageHeight = getImageHeight(image, viewportWidth, viewportHeight);
+      const imageHeight = getImageHeight(image, runwayWidth, viewportHeight);
+      setHeroWidth((currentWidth) =>
+        currentWidth === runwayWidth ? currentWidth : runwayWidth,
+      );
 
       // Measure scroll progress and clamp the image pan to its available height.
       const runwayTop =
@@ -143,12 +153,13 @@ export default function Hero({
       );
 
       /**
-       *  APPLY the CALCULATED Image Width as the Viewport Width.
+       *  APPLY the CALCULATED Image Width as the Runway Width.
        *  APPLY the CALCULATED Image Height as imageHeight.
        *  APPLY the CALCULATED Image Offset as imageOffset.
        *
        *  */
-      image.style.width = `${viewportWidth}px`;
+      heroWrapper.style.width = `${runwayWidth}px`;
+      image.style.width = `${runwayWidth}px`;
       image.style.height = `${imageHeight}px`;
       image.style.transform = `translateY(-${imageOffset}px)`;
 
@@ -162,6 +173,8 @@ export default function Hero({
       }
     };
 
+    const resizeObserver = new ResizeObserver(scheduleUpdate);
+    resizeObserver.observe(runwayWrapper);
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate);
     scheduleUpdate();
@@ -169,9 +182,10 @@ export default function Hero({
     return () => {
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
+      resizeObserver.disconnect();
       if (frameId !== null) window.cancelAnimationFrame(frameId);
     };
-  }, [backgroundReady]);
+  }, [backgroundReady, scrollEffect]);
 
   /**
    * ---------- MAIN HERO (contains the Background Image , Children )  ----------
@@ -184,9 +198,10 @@ export default function Hero({
       ref={scrollEffect ? heroWrapperRef : undefined}
       className={
         scrollEffect
-          ? "dark fixed inset-0 z-0 h-dvh overflow-hidden"
+          ? "dark fixed left-0 top-0 z-0 h-dvh overflow-hidden"
           : "dark relative h-dvh overflow-hidden"
       }
+      style={scrollEffect ? { width: `${heroWidth}px` } : undefined}
     >
       <img
         ref={scrollEffect ? imageRef : undefined}
@@ -214,7 +229,7 @@ export default function Hero({
         style={
           scrollEffect
             ? {
-                width: "100vw",
+                width: `${heroWidth}px`,
                 height: runwayHeight ? `${runwayHeight}px` : "100dvh",
               }
             : undefined

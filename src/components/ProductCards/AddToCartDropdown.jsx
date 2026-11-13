@@ -111,7 +111,7 @@ export default function AddToCartDropdown({ tee }) {
         className={`group/button flex w-full flex-row justify-between pr-2 pl-4 transition-colors duration-200 ease-in-out h-10 ${
           isOpen ? addToCartButtonHoverClassName : addToCartButtonClassName + ""
         }`}
-        labelClassName="relative grid overflow-hidden text-[max(6cqw,0.78rem)]"
+        labelClassName="relative grid overflow-hidden text-[max(4cqw,0.9rem)]"
       >
         <span
           className={`col-start-1 row-start-1 transition-transform duration-300 ${

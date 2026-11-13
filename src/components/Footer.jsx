@@ -24,8 +24,8 @@ export default function Footer() {
 
   return (
     <footer className="dark relative z-0 flex flex-col bg-card text-card-foreground justify-center border-t-2 border-card-foreground/5">
-      <div className="tracking-[7px] font-display text-[10vw] self-center px-12 py-0">
-        COLLARBONE
+      <div className="flex flex-row justify-center">
+        <h1 className="tracking-[7px] text-[10vw] font-display">COLLARBONE</h1>
       </div>
       <div className="grid grid-cols-1 border-t-2 border-card-foreground/5 text-card-foreground/50 sm:grid-cols-2 lg:grid-cols-4">
         <div className="flex w-full flex-col items-start border-b-2 border-card-foreground/5 p-6 sm:border-r-2 sm:p-8 lg:border-b-0 lg:p-12">
@@ -102,9 +102,9 @@ export default function Footer() {
           </form>
         </div>
       </div>
-      <div className="flex flex-row justify-between border-t-2 border-card-foreground/5 text-center text-card-foreground/50 text-sm">
-        <div className="p-6">
-          <p className="text-[14px]">
+      <div className="flex flex-row justify-between border-t-2 border-card-foreground/5 text-center text-card-foreground/50 text-sm p-[1.5vw]">
+        <div className="flex flex-col justify-center">
+          <p className="text-[min(2.5vw,1.25rem)]">
             © 2026 - Website Made with 🤍 by{" "}
             <a
               href="https://github.com/hamzazainbhatti"
@@ -117,18 +117,18 @@ export default function Footer() {
             .
           </p>
         </div>
-        <div className="flex flex-row gap-8 p-6 items-center">
+        <div className="flex flex-row items-center gap-[1.5vw]">
           <div>
-            <FaGithub size={20} />
+            <FaGithub />
           </div>
           <div>
-            <FaInstagram size={20} />
+            <FaInstagram />
           </div>
           <div>
-            <FaXTwitter size={20} />
+            <FaXTwitter />
           </div>
           <div>
-            <FaLinkedin size={20} />
+            <FaLinkedin />
           </div>
         </div>
       </div>
