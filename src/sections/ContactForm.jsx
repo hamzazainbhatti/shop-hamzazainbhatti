@@ -6,7 +6,7 @@ export default function ContactForm() {
   return (
     <div
       id="contact"
-      className="dark flex flex-row bg-card text-card-foreground border-t-2 border-x-2 border-card-foreground/5"
+      className="dark flex flex-row bg-card text-card-foreground border-x-2 border-card-foreground/5"
     >
       <div
         className="w-1/2!"

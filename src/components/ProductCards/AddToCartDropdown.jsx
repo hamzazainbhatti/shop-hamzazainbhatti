@@ -67,9 +67,9 @@ export default function AddToCartDropdown({ tee }) {
   }
 
   return (
-    <div className="absolute bottom-0 right-0 m-4">
+    <div className="relative w-full">
       {isOpen ? (
-        <div className="absolute bottom-12 right-0 z-10 flex w-64 flex-col gap-4 rounded-lg border border-card-foreground/20 bg-card p-4 text-card-foreground shadow-xl">
+        <div className="absolute bottom-[calc(100%+15px)] right-0 z-100 w-[calc(100cqw-16px)] flex flex-col gap-4 rounded-lg border border-card-foreground/20 bg-card p-4 text-card-foreground shadow-xl">
           <OptionTags
             label="Fabric finish"
             options={finishOptions}
@@ -108,17 +108,17 @@ export default function AddToCartDropdown({ tee }) {
         weight="normal"
         labelAlign="start"
         onClick={() => setIsOpen((previous) => !previous)}
-        className={`group/button flex w-40 flex-row justify-between pr-2 pl-4 transition-colors duration-200 ease-in-out ${
+        className={`group/button flex w-full flex-row justify-between pr-2 pl-4 transition-colors duration-200 ease-in-out h-10 ${
           isOpen ? addToCartButtonHoverClassName : addToCartButtonClassName + ""
         }`}
-        labelClassName="relative grid h-[1.25em] overflow-hidden mb-[0.3em]"
+        labelClassName="relative grid overflow-hidden text-[max(6cqw,0.78rem)]"
       >
         <span
           className={`col-start-1 row-start-1 transition-transform duration-300 ${
             isOpen ? "translate-y-full" : "translate-y-0"
           }`}
         >
-          Add To Card
+          Add To Cart
         </span>
         <span
           className={`col-start-1 row-start-1 transition-transform duration-300 ${

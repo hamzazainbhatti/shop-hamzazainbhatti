@@ -10,7 +10,7 @@ export default function ProductBadges({ tee, className = "" }) {
   const badges = getProductBadges(tee);
 
   return (
-    <div className={`flex min-h-8 flex-wrap items-center gap-1.5 ${className}`}>
+    <div className={`flex flex-wrap items-center h-7 gap-1.5 ${className}`}>
       {badges.map((badge) => (
         <span
           key={badge}

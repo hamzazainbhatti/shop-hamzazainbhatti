@@ -145,12 +145,12 @@ export default function HeroPage() {
             </ProductsGrid>
             <ExploreShirts
               bg="/assets/tees-promotion-bgs/man-violet-00.jpg"
-              link="/shirt/black"
+              link="/shirts?flag=inStock&tag=baggy&tag=oversized" // TODO: Handle "trending"
               buttonLabel="Explore Trending"
               className="m-0"
             />
           </SectionWrapper>
-          <div className="flex flex-col items-center bg-card-foreground/95 px-2 pb-4 my-2 mx-2 rounded-lg">
+          <div className="flex flex-col gap-2 items-center bg-card-foreground/95 px-2 pb-4 my-2 mx-2 rounded-lg">
             <h1 className="py-20 text-5xl text-center text-card font-extralight">
               We'd love to see your adventures with our beloved Tees. <br />{" "}
               Share your experiances with us on social media using <br />
